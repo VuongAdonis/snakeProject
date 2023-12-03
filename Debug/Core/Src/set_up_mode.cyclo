@@ -1,0 +1,3 @@
+set_up_mode.c:19:7:convert2str	1
+set_up_mode.c:27:6:lcdDrawWall	1
+set_up_mode.c:43:6:setUpLcdPlay	1
