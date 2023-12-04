@@ -1,0 +1,7 @@
+snake.c:15:6:initGame	16	static
+snake.c:40:6:goLeft	16	static
+snake.c:69:6:goRight	16	static
+snake.c:98:6:goUp	16	static
+snake.c:127:6:goDown	16	static
+snake.c:156:6:move	8	static
+snake.c:177:6:displaySnake	32	static
