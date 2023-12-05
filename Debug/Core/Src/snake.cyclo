@@ -1,0 +1,8 @@
+snake.c:18:6:initGame	2
+snake.c:43:6:goLeft	6
+snake.c:72:6:goRight	6
+snake.c:101:6:goUp	6
+snake.c:130:6:goDown	6
+snake.c:159:6:move	5
+snake.c:180:6:displaySnake	5
+snake.c:198:6:runSnake	6

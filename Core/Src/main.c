@@ -18,6 +18,7 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+
 #include "main.h"
 #include "spi.h"
 #include "tim.h"
@@ -34,6 +35,9 @@
 #include "set_up_mode.h"
 #include "startGame.h"
 #include "global.h"
+#include "snake.h"
+#include <game_over.h>
+#include "stop_game.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -116,13 +120,18 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+//  gameOverUI();
   while (1)
   {
 	  while(!flag_timer2);
 	  flag_timer2 = 0;
 	  button_Scan();
 	  beginStartGame();
-
+	  if(statusGame == NORMALMODE || statusGame == TIMINGMODE)
+	  {
+		  runSnake();
+	  }
+//	  test_lcd();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -234,7 +243,7 @@ void test_lcd(){
 	lcd_ShowStr(20, 30, "Test lcd screen", WHITE, RED, 24, 0);
 	lcd_DrawCircle(60, 120, GREEN, 40, 1);
 	lcd_DrawCircle(160, 120, BRED, 40, 0);
-	lcd_ShowPicture(80, 200, 90, 90, gImage_logo);
+	lcd_ShowPicture(80, 210, 39, 40, gImage_BKWHITEBG);
 }
 /* USER CODE END 4 */
 

@@ -10,6 +10,7 @@
 
 void startUI();
 void pickMode(uint16_t ID);
-
+void arrowInPickMode();
+void beginStartGame();
 
 #endif /* INC_STARTGAME_H_ */

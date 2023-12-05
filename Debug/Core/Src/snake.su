@@ -1,0 +1,8 @@
+../Core/Src/snake.c:18:6:initGame	16	static
+../Core/Src/snake.c:43:6:goLeft	16	static
+../Core/Src/snake.c:72:6:goRight	16	static
+../Core/Src/snake.c:101:6:goUp	16	static
+../Core/Src/snake.c:130:6:goDown	16	static
+../Core/Src/snake.c:159:6:move	8	static
+../Core/Src/snake.c:180:6:displaySnake	32	static
+../Core/Src/snake.c:198:6:runSnake	8	static

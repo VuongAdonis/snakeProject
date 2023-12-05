@@ -11,6 +11,8 @@
 
 char *convert2str(uint16_t val);
 void lcdDrawWall();
-void setUpLcdPlay(uint16_t ID);
+void setUpLcdNormalPlay(uint16_t id, uint16_t score);
+void setUpLcdTimingPlay(uint16_t id, uint16_t timing);
+void setUpLcdAdvancePlay(uint16_t id, uint16_t timing);
 
 #endif /* INC_SET_UP_MODE_H_ */

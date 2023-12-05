@@ -11,4 +11,6 @@
 extern const unsigned char gImage_logo[16200];
 
 extern const unsigned char gImage_pic[86400];
+
+extern const unsigned char gImage_BKWHITEBG[3120];
 #endif /* INC_PICTURE_H_ */

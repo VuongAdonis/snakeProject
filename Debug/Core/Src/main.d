@@ -34,7 +34,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/software_timer.h ../Core/Inc/tim.h ../Core/Inc/led_7seg.h \
  ../Core/Inc/spi.h ../Core/Inc/led_7seg.h ../Core/Inc/button.h \
  ../Core/Inc/gpio.h ../Core/Inc/lcd.h ../Core/Inc/picture.h \
- ../Core/Inc/set_up_mode.h ../Core/Inc/startGame.h ../Core/Inc/global.h
+ ../Core/Inc/set_up_mode.h ../Core/Inc/startGame.h ../Core/Inc/global.h \
+ ../Core/Inc/snake.h ../Core/Inc/game_over.h ../Core/Inc/stop_game.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -84,3 +85,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/set_up_mode.h:
 ../Core/Inc/startGame.h:
 ../Core/Inc/global.h:
+../Core/Inc/snake.h:
+../Core/Inc/game_over.h:
+../Core/Inc/stop_game.h:
