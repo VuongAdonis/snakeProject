@@ -33,6 +33,7 @@
 #include "picture.h"
 #include "enterID.h"
 #include "snake.h"
+#include "time.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -111,53 +112,29 @@ int main(void)
 //  enterIDFunction();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  initGame();
-
-  displaySnake();
+  srand(time(0));
+  snakeInit();
+//  lcd_ShowIntNum(100, 50, xFruit, 4, RED, WHITE, 24);
+//  lcd_ShowIntNum(150, 50, yFruit, 4, RED, WHITE, 24);
   while (1)
   {
 	  while(!flag_timer2);
 	  flag_timer2 = 0;
 	  button_Scan();
+	  if (flagEat== 0)
+	  {
+		  generateFruit();
+	  }
+	  snakeRun();
+//	  HAL_Delay(1000);
+//	  checkHead();
+//	  HAL_Delay(1000);
+
+//      xFruit= (rand()%(rangeXGenerate+ 1)+ 1)*5;   // 47  -> 0->45
+//      yFruit= (rand()%(rangeYGenerate+ 1) + 13)* 5;  // 50	-> 0->49
+//	  lcd_Clear(WHITE);
 //	  move();
 //	  displaySnake();
-	  if (button_count[5])
-	  {
-		  goUp();
-	  }
-	  else
-	  {
-		  if (button_count[13])
-		  {
-			  goDown();
-		  }
-		  else
-		  {
-			  if (button_count[10])
-			  {
-				  goRight();
-			  }
-			  else
-			  {
-				  if (button_count[8])
-				  {
-					  goLeft();
-				  }
-				  else
-				  {
-					  if (button_count[9])
-					  {
-						  continue;
-					  }
-					  else
-						  move();
-				  }
-			  }
-		  }
-	  }
-	  lcd_Clear(WHITE);
-	  displaySnake();
-//	  test_button();
 
     /* USER CODE END WHILE */
 
@@ -219,7 +196,7 @@ void system_init(){
 	  led7_init();
 	  button_init();
 	  lcd_init();
-	  setTimer2(100);
+	  setTimer2(1000);
 }
 
 uint8_t count_led_debug = 0;

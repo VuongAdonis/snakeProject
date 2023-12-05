@@ -1,7 +1,10 @@
-snake.c:15:6:initGame	16	static
-snake.c:40:6:goLeft	16	static
-snake.c:69:6:goRight	16	static
-snake.c:98:6:goUp	16	static
-snake.c:127:6:goDown	16	static
-snake.c:156:6:move	8	static
-snake.c:177:6:displaySnake	32	static
+snake.c:44:6:goLeft	48	static
+snake.c:91:6:goRight	48	static
+snake.c:138:6:goUp	48	static
+snake.c:185:6:goDown	48	static
+snake.c:232:6:resumeGame	32	static
+snake.c:253:6:checkHead	48	static
+snake.c:289:6:move	8	static
+snake.c:310:6:snakeRun	8	static
+snake.c:353:6:snakeInit	32	static
+snake.c:393:6:generateFruit	32	static
