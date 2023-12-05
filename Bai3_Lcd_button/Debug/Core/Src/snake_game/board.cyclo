@@ -1,0 +1,2 @@
+../Core/Src/snake_game/board.c:10:6:initBoard	1
+../Core/Src/snake_game/board.c:14:6:setScreenSize	1

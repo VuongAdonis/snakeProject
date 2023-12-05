@@ -1,0 +1,5 @@
+../Core/Src/snake_game/fruit.c:18:8:setFruit	32	static
+../Core/Src/snake_game/fruit.c:34:6:displayFruit	40	static
+../Core/Src/snake_game/fruit.c:47:10:randomCoordinate	24	static
+../Core/Src/snake_game/fruit.c:62:5:isEaten	64	static
+../Core/Src/snake_game/fruit.c:89:6:generateFruit	24	static
