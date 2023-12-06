@@ -10,12 +10,23 @@
 #include "button.h"
 #include "limits.h"
 
-int rangeXGenerate= (rangeValidXUpper- rangeValidXLower)/ snakeWidth;  // 29
-int rangeYGenerate= (rangeValidYUpper- rangeValidYLower)/ snakeWidth;  // 31
+#define RIGHT 0
+#define LEFT 1
+#define DOWN 2
+#define UP 3
+#define rangeValidXLower 0
+#define rangeValidXUpper 230
+#define rangeValidYLower 70
+#define rangeValidYUpper 310
+#define snakeWidth 9
+#define snakeStep 10
+#define MAX_LENGTH 500
+#define rangeXGenerate (rangeValidXUpper- rangeValidXLower)/ snakeStep
+#define rangeYGenerate (rangeValidYUpper- rangeValidYLower)/ snakeStep
 
 int xFruit= INT_MIN;
 int yFruit = INT_MIN;
-int flagEat= 0;
+int flagEat= 1;
 
 typedef struct
 {
@@ -41,6 +52,47 @@ typedef struct
 
 SNAKE snakeObject;
 
+void drawHeadSnake()
+{
+	switch (snakeObject.snakeDirectionHead)
+	{
+		case UP:
+			lcd_Fill(snakeObject.infoSnake[0].x, snakeObject.infoSnake[0].y,
+				snakeObject.infoSnake[0].x+ snakeWidth, snakeObject.infoSnake[0].y+ snakeWidth, RED);
+			lcd_Fill(snakeObject.infoSnake[0].x, snakeObject.infoSnake[0].y,
+					snakeObject.infoSnake[0].x+ 4, snakeObject.infoSnake[0].y +4, BLACK);
+			lcd_Fill(snakeObject.infoSnake[0].x+ 5, snakeObject.infoSnake[0].y,
+					snakeObject.infoSnake[0].x+ 9, snakeObject.infoSnake[0].y + 4, BLACK);
+			break;
+		case DOWN:
+			lcd_Fill(snakeObject.infoSnake[0].x, snakeObject.infoSnake[0].y,
+				snakeObject.infoSnake[0].x+ snakeWidth, snakeObject.infoSnake[0].y+ snakeWidth, RED);
+			lcd_Fill(snakeObject.infoSnake[0].x, snakeObject.infoSnake[0].y+ 5,
+					snakeObject.infoSnake[0].x+ 4, snakeObject.infoSnake[0].y +9, BLACK);
+			lcd_Fill(snakeObject.infoSnake[0].x+ 5, snakeObject.infoSnake[0].y + 5,
+					snakeObject.infoSnake[0].x+ 9, snakeObject.infoSnake[0].y + 9, BLACK);
+			break;
+		case LEFT:
+			lcd_Fill(snakeObject.infoSnake[0].x, snakeObject.infoSnake[0].y,
+				snakeObject.infoSnake[0].x+ snakeWidth, snakeObject.infoSnake[0].y+ snakeWidth, RED);
+			lcd_Fill(snakeObject.infoSnake[0].x, snakeObject.infoSnake[0].y,
+					snakeObject.infoSnake[0].x+ 4, snakeObject.infoSnake[0].y +4, BLACK);
+			lcd_Fill(snakeObject.infoSnake[0].x, snakeObject.infoSnake[0].y + 5,
+					snakeObject.infoSnake[0].x+ 4, snakeObject.infoSnake[0].y + 9, BLACK);
+			break;
+		case RIGHT:
+			lcd_Fill(snakeObject.infoSnake[0].x, snakeObject.infoSnake[0].y,
+				snakeObject.infoSnake[0].x+ snakeWidth, snakeObject.infoSnake[0].y+ snakeWidth, RED);
+			lcd_Fill(snakeObject.infoSnake[0].x+ 5, snakeObject.infoSnake[0].y,
+					snakeObject.infoSnake[0].x+ 9, snakeObject.infoSnake[0].y +4, BLACK);
+			lcd_Fill(snakeObject.infoSnake[0].x+ 5, snakeObject.infoSnake[0].y + 5,
+					snakeObject.infoSnake[0].x+ 9, snakeObject.infoSnake[0].y + 9, BLACK);
+			break;
+		default:
+			break;
+	}
+}
+
 void goLeft()
 {
 	if (snakeObject.stopFlag== 0)
@@ -59,14 +111,9 @@ void goLeft()
 				if (i== 0)
 				{
 					tempSnake1= snakeObject.infoSnake[i];
-					snakeObject.infoSnake[i].x-= snakeWidth;
+					snakeObject.infoSnake[i].x-= snakeStep;
 					snakeObject.infoSnake[i].y= snakeObject.infoSnake[i].y;
-					lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y,
-						snakeObject.infoSnake[i].x+ snakeWidth, snakeObject.infoSnake[i].y+ snakeWidth, RED);
-					lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y,
-							snakeObject.infoSnake[i].x+ 4, snakeObject.infoSnake[i].y +4, BLUE);
-					lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y + 5,
-							snakeObject.infoSnake[i].x+ 4, snakeObject.infoSnake[i].y + 8, BLUE);
+					drawHeadSnake();
 				}
 				else
 				{
@@ -106,14 +153,9 @@ void goRight()
 				if (i== 0)
 				{
 					tempSnake1= snakeObject.infoSnake[i];
-					snakeObject.infoSnake[i].x+= snakeWidth;
+					snakeObject.infoSnake[i].x+= snakeStep;
 					snakeObject.infoSnake[i].y= snakeObject.infoSnake[i].y;
-					lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y,
-						snakeObject.infoSnake[i].x+ snakeWidth, snakeObject.infoSnake[i].y+ snakeWidth, RED);
-					lcd_Fill(snakeObject.infoSnake[i].x+ 5, snakeObject.infoSnake[i].y,
-							snakeObject.infoSnake[i].x+ 8, snakeObject.infoSnake[i].y +4, BLUE);
-					lcd_Fill(snakeObject.infoSnake[i].x+ 5, snakeObject.infoSnake[i].y + 5,
-							snakeObject.infoSnake[i].x+ 8, snakeObject.infoSnake[i].y + 8, BLUE);
+					drawHeadSnake();
 				}
 				else
 				{
@@ -154,13 +196,8 @@ void goUp()
 				{
 					tempSnake1= snakeObject.infoSnake[i];
 					snakeObject.infoSnake[i].x = snakeObject.infoSnake[i].x;
-					snakeObject.infoSnake[i].y-= snakeWidth;
-					lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y,
-						snakeObject.infoSnake[i].x+ snakeWidth, snakeObject.infoSnake[i].y+ snakeWidth, RED);
-					lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y,
-							snakeObject.infoSnake[i].x+ 4, snakeObject.infoSnake[i].y +4, BLUE);
-					lcd_Fill(snakeObject.infoSnake[i].x+ 5, snakeObject.infoSnake[i].y,
-							snakeObject.infoSnake[i].x+ 8, snakeObject.infoSnake[i].y + 4, BLUE);
+					snakeObject.infoSnake[i].y-= snakeStep;
+					drawHeadSnake();
 				}
 				else
 				{
@@ -201,13 +238,8 @@ void goDown()
 				{
 					tempSnake1= snakeObject.infoSnake[i];
 					snakeObject.infoSnake[i].x = snakeObject.infoSnake[i].x;
-					snakeObject.infoSnake[i].y+= snakeWidth;
-					lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y,
-						snakeObject.infoSnake[i].x+ snakeWidth, snakeObject.infoSnake[i].y+ snakeWidth, RED);
-					lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y+ 5,
-							snakeObject.infoSnake[i].x+ 4, snakeObject.infoSnake[i].y +8, BLUE);
-					lcd_Fill(snakeObject.infoSnake[i].x+ 5, snakeObject.infoSnake[i].y + 5,
-							snakeObject.infoSnake[i].x+ 8, snakeObject.infoSnake[i].y + 8, BLUE);
+					snakeObject.infoSnake[i].y+= snakeStep;
+					drawHeadSnake();
 				}
 				else
 				{
@@ -234,19 +266,10 @@ void resumeGame()
 	for (int i= 0; i < snakeObject.snakeLength; i++)
 	{
 		if (i== 0)
-		{
-			lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y,
-				snakeObject.infoSnake[i].x+ snakeWidth, snakeObject.infoSnake[i].y+ snakeWidth, RED);
-			lcd_Fill(snakeObject.infoSnake[i].x+ 5, snakeObject.infoSnake[i].y,
-					snakeObject.infoSnake[i].x+ 8, snakeObject.infoSnake[i].y +4, BLUE);
-			lcd_Fill(snakeObject.infoSnake[i].x+ 5, snakeObject.infoSnake[i].y + 5,
-				snakeObject.infoSnake[i].x+ 8, snakeObject.infoSnake[i].y + 8, BLUE);
-		}
+			drawHeadSnake();
 		else
-		{
 			lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y,
 				snakeObject.infoSnake[i].x+ snakeWidth, snakeObject.infoSnake[i].y+ snakeWidth, BLACK);
-		}
 	}
 }
 
@@ -255,9 +278,10 @@ void checkHead()
 	lcd_ShowIntNum(100, 100, snakeObject.infoSnake[0].x, 3, BLACK, WHITE, 24);
 	lcd_ShowIntNum(150, 100, snakeObject.infoSnake[0].y, 3, BLACK, WHITE, 24);
 	if ((snakeObject.infoSnake[0].x < 0) || (snakeObject.infoSnake[0].x > 232)
-		|| (snakeObject.infoSnake[0].y < 64) || (snakeObject.infoSnake[0].y > 312))
+		|| (snakeObject.infoSnake[0].y < 70) || (snakeObject.infoSnake[0].y > 312))
 	{
 		// show gameover
+		lcd_ShowIntNum(100, 200, 14, 3, RED, WHITE, 24);
 	}
 	else
 	{
@@ -267,6 +291,7 @@ void checkHead()
 				&& snakeObject.infoSnake[0].y== snakeObject.infoSnake[i].y)
 			{
 				// showGameover
+				lcd_ShowIntNum(100, 200, 14, 3, RED, WHITE, 24);
 				return;
 			}
 		}
@@ -281,7 +306,7 @@ void checkHead()
 			int x= snakeObject.infoSnake[snakeObject.snakeLength-1].x;
 			int y= snakeObject.infoSnake[snakeObject.snakeLength-1 ].y;
 			lcd_Fill(x, y, x+ snakeWidth, y + snakeWidth, BLACK);
-			flagEat= 0;
+			flagEat= 1;
 		}
 	}
 }
@@ -352,9 +377,9 @@ void snakeRun()
 
 void snakeInit()
 {
-	snakeObject.infoSnake[0].x= 16;
+	snakeObject.infoSnake[0].x= 20;
 	snakeObject.infoSnake[0].y= rangeValidYLower;
-	snakeObject.infoSnake[1].x= 8;
+	snakeObject.infoSnake[1].x= 10;
 	snakeObject.infoSnake[1].y= rangeValidYLower;
 	snakeObject.infoSnake[2].x= 0;
 	snakeObject.infoSnake[2].y= rangeValidYLower;
@@ -374,36 +399,29 @@ void snakeInit()
 	for (int i= 0; i < 3; i++)
 	{
 		if (i== 0)
-		{
-			lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y,
-					snakeObject.infoSnake[i].x+ snakeWidth, snakeObject.infoSnake[i].y+ snakeWidth, RED);
-			lcd_Fill(snakeObject.infoSnake[i].x+ 5, snakeObject.infoSnake[i].y,
-					snakeObject.infoSnake[i].x+ 8, snakeObject.infoSnake[i].y +4, BLUE);
-			lcd_Fill(snakeObject.infoSnake[i].x+ 5, snakeObject.infoSnake[i].y + 5,
-					snakeObject.infoSnake[i].x+ 8, snakeObject.infoSnake[i].y + 8, BLUE);
-		}
+			drawHeadSnake();
 		else
-		{
 			lcd_Fill(snakeObject.infoSnake[i].x, snakeObject.infoSnake[i].y,
 					snakeObject.infoSnake[i].x+ snakeWidth, snakeObject.infoSnake[i].y+ snakeWidth, BLACK);
-		}
 	}
 }
 
 void generateFruit()
 {
-	// srand(time(0));
-	xFruit= (rand()%(rangeXGenerate+ 1))*snakeWidth;
-	yFruit= (rand()%(rangeYGenerate+ 1)+ snakeWidth)*snakeWidth;
-	for (int i= 0; i < snakeObject.snakeLength; i++)
+	if (flagEat== 1)
 	{
-		if (xFruit== snakeObject.infoSnake[i].x && yFruit == snakeObject.infoSnake[i].y)
+		xFruit= (rand()%(rangeXGenerate+ 1))*snakeStep;
+		yFruit= (rand()%(rangeYGenerate+ 1)+ 7)*snakeStep;
+		for (int i= 0; i < snakeObject.snakeLength; i++)
 		{
-			xFruit= INT_MIN;
-			yFruit= INT_MIN;
-			return;
+			if (xFruit== snakeObject.infoSnake[i].x && yFruit == snakeObject.infoSnake[i].y)
+			{
+				xFruit= INT_MIN;
+				yFruit= INT_MIN;
+				return;
+			}
 		}
+		lcd_Fill(xFruit, yFruit, xFruit+ snakeWidth, yFruit+ snakeWidth, DARKBLUE);
+		flagEat= 0;
 	}
-	lcd_Fill(xFruit, yFruit, xFruit+ snakeWidth, yFruit+ snakeWidth, DARKBLUE);
-	flagEat= 1;
 }

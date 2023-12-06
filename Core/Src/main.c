@@ -114,18 +114,20 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   srand(time(0));
   snakeInit();
-//  lcd_ShowIntNum(100, 50, xFruit, 4, RED, WHITE, 24);
-//  lcd_ShowIntNum(150, 50, yFruit, 4, RED, WHITE, 24);
+  lcd_Fill(0,  0, 240, 70, RED);
   while (1)
   {
-	  while(!flag_timer2);
-	  flag_timer2 = 0;
-	  button_Scan();
-	  if (flagEat== 0)
+	  generateFruit();
+	  if (flagForButton)
 	  {
-		  generateFruit();
+		  flagForButton= 0;
+		  button_Scan();
 	  }
-	  snakeRun();
+	  if (flagForSnakeRun)
+	  {
+		  flagForSnakeRun= 0;
+		  snakeRun();
+	  }
 //	  HAL_Delay(1000);
 //	  checkHead();
 //	  HAL_Delay(1000);
@@ -196,7 +198,8 @@ void system_init(){
 	  led7_init();
 	  button_init();
 	  lcd_init();
-	  setTimer2(1000);
+	  setTimerButton(50);
+	  setTimerSnakeRun(200);
 }
 
 uint8_t count_led_debug = 0;
