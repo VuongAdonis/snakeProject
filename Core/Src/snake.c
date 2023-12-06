@@ -275,13 +275,10 @@ void resumeGame()
 
 void checkHead()
 {
-	lcd_ShowIntNum(100, 100, snakeObject.infoSnake[0].x, 3, BLACK, WHITE, 24);
-	lcd_ShowIntNum(150, 100, snakeObject.infoSnake[0].y, 3, BLACK, WHITE, 24);
 	if ((snakeObject.infoSnake[0].x < 0) || (snakeObject.infoSnake[0].x > 232)
 		|| (snakeObject.infoSnake[0].y < 70) || (snakeObject.infoSnake[0].y > 312))
 	{
 		// show gameover
-		lcd_ShowIntNum(100, 200, 14, 3, RED, WHITE, 24);
 	}
 	else
 	{
@@ -291,11 +288,9 @@ void checkHead()
 				&& snakeObject.infoSnake[0].y== snakeObject.infoSnake[i].y)
 			{
 				// showGameover
-				lcd_ShowIntNum(100, 200, 14, 3, RED, WHITE, 24);
 				return;
 			}
 		}
-		lcd_ShowIntNum(100, 200, 14, 3, WHITE, WHITE, 24);
 		if (snakeObject.infoSnake[0].x== xFruit && snakeObject.infoSnake[0].y== yFruit)
 		{
 			xFruit= INT_MIN;
