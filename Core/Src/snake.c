@@ -279,6 +279,7 @@ void checkHead()
 		|| (snakeObject.infoSnake[0].y < 70) || (snakeObject.infoSnake[0].y > 312))
 	{
 		// show gameover
+		// reason: out of valid range
 	}
 	else
 	{
@@ -288,6 +289,7 @@ void checkHead()
 				&& snakeObject.infoSnake[0].y== snakeObject.infoSnake[i].y)
 			{
 				// showGameover
+				// reason: eat body
 				return;
 			}
 		}
