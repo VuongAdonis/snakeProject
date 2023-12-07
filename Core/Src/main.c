@@ -18,7 +18,6 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-
 #include "main.h"
 #include "spi.h"
 #include "tim.h"
@@ -32,11 +31,12 @@
 #include "button.h"
 #include "lcd.h"
 #include "picture.h"
-#include "set_up_mode.h"
+#include "snake.h"
+#include "time.h"
 #include "startGame.h"
 #include "global.h"
-#include "snake.h"
-#include <game_over.h>
+#include "set_up_mode.h"
+#include "game_over.h"
 #include "stop_game.h"
 /* USER CODE END Includes */
 
@@ -112,26 +112,56 @@ int main(void)
   system_init();
   lcd_Clear(WHITE);
   test_lcd();
-//  setUpLcdNormalMode(0);
-//  startUI();
-//  pickMode(0);
-//  lcdDrawWall();
   /* USER CODE END 2 */
-
+//  enterIDFunction();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-//  gameOverUI();
+//  snakeInit();
+//  lcd_Fill(0,  0, 240,  70, RED);
+//  lcd_Fill(235, 0, 240, 320, RED);
   while (1)
   {
-	  while(!flag_timer2);
-	  flag_timer2 = 0;
-	  button_Scan();
-	  beginStartGame();
-	  if(statusGame == NORMALMODE || statusGame == TIMINGMODE)
-	  {
-		  runSnake();
+    // lcd_Clear(WHITE);
+	   if (flagForButton)
+	   {
+		   flagForButton= 0;
+		   button_Scan();
+		   beginStartGame();
+	   }
+	   if(statusGame == NORMALMODE || statusGame == TIMINGMODE || statusGame == ADVANCEMODE)
+	   {
+		   generateFruit();
+		   if (flagForSnakeRun)
+		   {
+			   flagForSnakeRun= 0;
+			   snakeRun();
+		   }
+	  }else{
+		  flagForSnakeRun = 0;
 	  }
-//	  test_lcd();
+	  if(statusGame == OVERMODE)
+	  {
+		  pickOver();
+	  }
+	  if(statusGame == STOPMODE)
+	  {
+		  pickStop();
+	  }
+	  if(flagForTiming == 1)
+	  {
+		  flagForTiming = 0;
+		  statusGame = OVERMODE;
+		  initOverMode();
+		  arrowMode = NORMALMODE;
+	  }
+	  if(flagForDeTime == 1)
+	  {
+		  TIMING--;
+		  showTiming();
+		  setTimerDeTime(1000);
+	  }
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -192,7 +222,8 @@ void system_init(){
 	  led7_init();
 	  button_init();
 	  lcd_init();
-	  setTimer2(200);
+	  setTimerButton(50);
+	  setTimerSnakeRun(300);
 }
 
 uint8_t count_led_debug = 0;
@@ -238,12 +269,12 @@ void test_button(){
 	}
 }
 void test_lcd(){
-	lcd_Fill(0, 0, 240, 20, BLUE);
-	lcd_StrCenter(0, 2, "Hello World !!!", RED, BLUE, 16, 1);
-	lcd_ShowStr(20, 30, "Test lcd screen", WHITE, RED, 24, 0);
-	lcd_DrawCircle(60, 120, GREEN, 40, 1);
-	lcd_DrawCircle(160, 120, BRED, 40, 0);
-	lcd_ShowPicture(80, 210, 39, 40, gImage_BKWHITEBG);
+	lcd_Fill(19, 19, 29, 29, BLUE);
+	lcd_StrCenter(0, 100, "Hello World !!!", RED, BLUE, 16, 1);
+//	lcd_ShowStr(20, 30, "Test lcd screen", WHITE, RED, 24, 0);
+//	lcd_DrawCircle(60, 120, GREEN, 40, 1);
+//	lcd_DrawCircle(160, 120, BRED, 40, 0);
+//	lcd_ShowPicture(80, 200, 90, 90, gImage_logo);
 }
 /* USER CODE END 4 */
 

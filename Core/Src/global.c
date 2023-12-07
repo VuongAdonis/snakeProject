@@ -12,6 +12,7 @@
 uint16_t ID = 0;
 uint16_t TIMING = NOTIMING;
 uint16_t SCORE = 0;
+uint16_t WALL = 0;
 
 int arrowX1 = ARROWX1;
 int arrowX2 = ARROWX2;
@@ -20,8 +21,8 @@ int arrowY2 = ARROWNORMALY2;
 int arrowMode = NORMALMODE;
 
 int wallX[4] = {0, 240, 0, 240};
-int wallY[4] = {60, 60, 320, 320};
-int wallSize = 5;
+int wallY[4] = {66, 66, 320, 320};
+int wallSize = 4;
 
 int overWallX[4] = {70, 170, 70, 170};
 int overWallY[4] = {130, 130, 250, 250};
@@ -48,6 +49,9 @@ int upper[2] = {5, 65};
 int lower[2] = {234, 314};
 
 int statusGame = 0;
+int oldStatusGame = 0;
 
+int flagOver = 0;
+int flagStop = 0;
 
-
+uint16_t oldTiming = 0;

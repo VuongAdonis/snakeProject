@@ -32,7 +32,7 @@ Core/Src/stop_game.o: ../Core/Src/stop_game.c ../Core/Inc/lcd.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Core/Inc/startGame.h ../Core/Inc/set_up_mode.h ../Core/Inc/global.h \
  ../Core/Inc/main.h ../Core/Inc/button.h ../Core/Inc/spi.h \
- ../Core/Inc/picture.h ../Core/Inc/stop_game.h
+ ../Core/Inc/picture.h ../Core/Inc/stop_game.h ../Core/Inc/snake.h
 ../Core/Inc/lcd.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/main.h:
@@ -74,3 +74,4 @@ Core/Src/stop_game.o: ../Core/Src/stop_game.c ../Core/Inc/lcd.h \
 ../Core/Inc/spi.h:
 ../Core/Inc/picture.h:
 ../Core/Inc/stop_game.h:
+../Core/Inc/snake.h:

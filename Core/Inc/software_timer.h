@@ -13,9 +13,15 @@
 #include "tim.h"
 #include "led_7seg.h"
 
-extern uint16_t flag_timer2;
+extern uint16_t flagForSnakeRun;
+extern uint16_t flagForButton;
+extern uint16_t flagForTiming;
+extern uint16_t flagForDeTime;
 
 void timer_init();
-void setTimer2(uint16_t duration);
+void setTimerSnakeRun(uint16_t duration);
+void setTimerTiming(uint16_t duration);
+void setTimerDeTime(uint16_t duration);
+void setTimerButton(uint16_t duration);
 
 #endif /* INC_SOFTWARE_TIMER_H_ */

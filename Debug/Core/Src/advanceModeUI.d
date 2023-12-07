@@ -1,5 +1,5 @@
-Core/Src/snake.o: ../Core/Src/snake.c ../Core/Inc/snake.h \
- ../Core/Inc/lcd.h ../Core/Inc/gpio.h ../Core/Inc/main.h \
+Core/Src/advanceModeUI.o: ../Core/Src/advanceModeUI.c \
+ ../Core/Inc/advanceModeUI.h ../Core/Inc/global.h ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -30,11 +30,10 @@ Core/Src/snake.o: ../Core/Src/snake.c ../Core/Inc/snake.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- ../Core/Inc/button.h ../Core/Inc/spi.h ../Core/Inc/game_over.h \
- ../Core/Inc/global.h
-../Core/Inc/snake.h:
-../Core/Inc/lcd.h:
-../Core/Inc/gpio.h:
+ ../Core/Inc/picture.h ../Core/Inc/lcd.h ../Core/Inc/gpio.h \
+ ../Core/Inc/button.h ../Core/Inc/spi.h
+../Core/Inc/advanceModeUI.h:
+../Core/Inc/global.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -66,7 +65,8 @@ Core/Src/snake.o: ../Core/Src/snake.c ../Core/Inc/snake.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
+../Core/Inc/picture.h:
+../Core/Inc/lcd.h:
+../Core/Inc/gpio.h:
 ../Core/Inc/button.h:
 ../Core/Inc/spi.h:
-../Core/Inc/game_over.h:
-../Core/Inc/global.h:

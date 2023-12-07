@@ -13,5 +13,6 @@ void showWallnotify();
 void eraseFull();
 void gameOverUI();
 void pickOver();
+void initOverMode();
 
 #endif /* INC_GAME_OVER_H_ */

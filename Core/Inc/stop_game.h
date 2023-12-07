@@ -10,5 +10,6 @@
 
 void gameStopUI();
 void pickStop();
+uint8_t initStopGame(uint8_t val);
 
 #endif /* INC_STOP_GAME_H_ */

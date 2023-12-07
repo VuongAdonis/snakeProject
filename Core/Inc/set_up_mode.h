@@ -14,5 +14,6 @@ void lcdDrawWall();
 void setUpLcdNormalPlay(uint16_t id, uint16_t score);
 void setUpLcdTimingPlay(uint16_t id, uint16_t timing);
 void setUpLcdAdvancePlay(uint16_t id, uint16_t timing);
+void printScore();
 
 #endif /* INC_SET_UP_MODE_H_ */

@@ -1,6 +1,6 @@
-../Core/Src/startGame.c:16:6:startUI	88	static
-../Core/Src/startGame.c:35:6:eraseArrow	16	static
-../Core/Src/startGame.c:40:6:drawArrow	24	static
-../Core/Src/startGame.c:49:6:arrowInPickMode	24	static
-../Core/Src/startGame.c:144:6:pickMode	96	static
-../Core/Src/startGame.c:172:6:beginStartGame	88	static
+../Core/Src/startGame.c:20:6:startUI	88	static
+../Core/Src/startGame.c:39:6:eraseArrow	16	static
+../Core/Src/startGame.c:44:6:drawArrow	24	static
+../Core/Src/startGame.c:53:6:arrowInPickMode	24	static
+../Core/Src/startGame.c:162:6:pickMode	96	static
+../Core/Src/startGame.c:192:6:beginStartGame	88	static

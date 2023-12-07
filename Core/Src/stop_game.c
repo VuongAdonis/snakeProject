@@ -13,6 +13,7 @@
 #include "button.h"
 #include "picture.h"
 #include "stop_game.h"
+#include "snake.h"
 
 void showNotifyStop()
 {
@@ -62,6 +63,7 @@ void pickStop()
 	{
 		if(button_count[3] == 1)
 		{
+			flagStop = 1;
 			switch(arrowStopMode)
 			{
 			case RESUME:
@@ -76,6 +78,7 @@ void pickStop()
 		}
 		if(button_count[7] == 1)
 		{
+			flagStop = 1;
 			switch(arrowStopMode)
 			{
 			case RESUME:
@@ -88,6 +91,23 @@ void pickStop()
 				break;
 			}
 		}
+		if(flagStop == 1)
+		{
+			gameStopUI();
+			flagStop = 0;
+		}
 	}
 }
 
+uint8_t initStopGame(uint8_t val)
+{
+	if(val == 1)
+	{
+		statusGame = STOPMODE;
+		arrowStopMode = RESUME;
+		setTimerTiming(0);
+		flagStop = 1;
+		pickStop();
+	}
+	return 0;
+}

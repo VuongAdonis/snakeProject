@@ -72,42 +72,53 @@ void drawArrowOver()
 
 void gameOverUI()
 {
-	showOver();
+	showNotifyOver();
 	showNotifyOver();
 	drawArrowOver();
 }
 
 void pickOver()
 {
-	if(statusGame == OVERMODE)
+	if(button_count[3] == 1)
 	{
-		if(button_count[3] == 1)
+		flagOver = 1;
+		switch(arrowOverMode)
 		{
-			switch(arrowOverMode)
-			{
-			case NEWGAME:
-				// Do nothing
-				return;
-				break;
-			case EXIT:
-				arrowOverMode = NEWGAME;
-				gameOverUI();
-				break;
-			}
-		}
-		if(button_count[7] == 1)
-		{
-			switch(arrowOverMode)
-			{
-			case NEWGAME:
-				arrowOverMode = EXIT;
-				gameOverUI();
-				break;
-			case EXIT:
-				// Do nothing
-				return;
-				break;
-			}
+		case NEWGAME:
+			// Do nothing
+			return;
+			break;
+		case EXIT:
+			arrowOverMode = NEWGAME;
+			break;
 		}
 	}
+	if(button_count[7] == 1)
+	{
+		flagOver = 1;
+		switch(arrowOverMode)
+		{
+		case NEWGAME:
+			arrowOverMode = EXIT;
+			break;
+		case EXIT:
+			// Do nothing
+			return;
+			break;
+		}
+	}
+	if(flagOver == 1)
+	{
+		gameOverUI();
+		flagOver = 0;
+	}
+}
+
+void initOverMode()
+{
+	statusGame = OVERMODE;
+	SCORE = 0;
+	arrowOverMode = NEWGAME;
+	flagOver = 1;
+	pickOver();
 }

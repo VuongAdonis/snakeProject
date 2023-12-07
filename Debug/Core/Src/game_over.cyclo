@@ -3,4 +3,5 @@ game_over.c:33:6:showNotifyOver	1
 game_over.c:42:6:eraseFull	1
 game_over.c:47:6:drawArrowOver	3
 game_over.c:73:6:gameOverUI	1
-game_over.c:80:6:pickOver	7
+game_over.c:80:6:pickOver	8
+game_over.c:117:6:initOverMode	1

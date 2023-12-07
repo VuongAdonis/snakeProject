@@ -16,6 +16,8 @@
 #define ADVANCEMODE 5
 #define STOPMODE 6
 #define OVERMODE 7
+#define SETUPTIMEMODE 8
+#define SETUPADVANCEMODE 9
 
 #define ARROWX1 180
 #define ARROWX2 220
@@ -36,6 +38,7 @@
 extern uint16_t ID;
 extern uint16_t TIMING;
 extern uint16_t SCORE;
+extern uint16_t WALL;
 
 extern int arrowX1;
 extern int arrowY1;
@@ -73,5 +76,11 @@ extern int upper[2];
 extern int lower[2];
 
 extern int statusGame;
+extern int oldStatusGame;
+
+extern int flagOver;
+extern int flagStop;
+
+extern uint16_t oldTiming;
 
 #endif /* INC_GLOBAL_H_ */
