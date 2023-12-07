@@ -9,6 +9,8 @@
 #include "lcd.h"
 #include "button.h"
 #include "limits.h"
+#include "time.h"
+#include "stdlib.h"
 
 #define RIGHT 0
 #define LEFT 1
@@ -23,6 +25,8 @@
 #define MAX_LENGTH 500
 #define rangeXGenerate (rangeValidXUpper- rangeValidXLower)/ snakeStep
 #define rangeYGenerate (rangeValidYUpper- rangeValidYLower)/ snakeStep
+
+int rst= 0;
 
 int xFruit= INT_MIN;
 int yFruit = INT_MIN;
@@ -275,11 +279,14 @@ void resumeGame()
 
 void checkHead()
 {
+//	lcd_ShowIntNum (100, 30 , snakeObject.snakeLength , 2 , WHITE , RED , 32) ;
 	if ((snakeObject.infoSnake[0].x < 0) || (snakeObject.infoSnake[0].x > 232)
 		|| (snakeObject.infoSnake[0].y < 70) || (snakeObject.infoSnake[0].y > 312))
 	{
 		// show gameover
 		// reason: out of valid range
+		lcd_ShowStr (20, 40 , "NGU", WHITE , RED , 24 ,0) ;
+
 	}
 	else
 	{
@@ -290,14 +297,17 @@ void checkHead()
 			{
 				// showGameover
 				// reason: eat body
+				lcd_ShowStr (20 , 40 , "NGU", WHITE , RED , 24 ,0) ;
 				return;
 			}
 		}
+//		  lcd_Fill(0,  0, 240, 70, RED);
 		if (snakeObject.infoSnake[0].x== xFruit && snakeObject.infoSnake[0].y== yFruit)
 		{
 			xFruit= INT_MIN;
 			yFruit= INT_MIN;
 			snakeObject.snakeLength+= 1;
+			lcd_ShowIntNum (100, 30 , snakeObject.snakeLength , 2 , WHITE , RED , 32) ;
 			snakeObject.infoSnake[snakeObject.snakeLength-1].x= snakeObject.infoTempSnakeTail.x;
 			snakeObject.infoSnake[snakeObject.snakeLength-1 ].y= snakeObject.infoTempSnakeTail.y;
 			int x= snakeObject.infoSnake[snakeObject.snakeLength-1].x;
@@ -360,11 +370,23 @@ void snakeRun()
 			  else
 			  {
 				  if (button_count[9])
+				  {
 					  snakeObject.stopFlag= !snakeObject.stopFlag;
+				  }
 				  else
 				  {
-					  (*snakeObject.MOVE)();
-					  (*snakeObject.CHECKHEAD)();
+					  if (button_count[12])
+					  {
+						  lcd_Clear(WHITE);
+						  snakeInit();
+						  lcd_Fill(0,  0, 240, 70, RED);
+						  flagEat= 1;
+					  }
+					  else
+					  {
+						  (*snakeObject.MOVE)();
+						  (*snakeObject.CHECKHEAD)();
+					  }
 				  }
 			  }
 		  }
@@ -374,6 +396,8 @@ void snakeRun()
 
 void snakeInit()
 {
+	srand(rst);
+	rst++;
 	snakeObject.infoSnake[0].x= 20;
 	snakeObject.infoSnake[0].y= rangeValidYLower;
 	snakeObject.infoSnake[1].x= 10;
