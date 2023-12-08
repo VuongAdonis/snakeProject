@@ -113,32 +113,28 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   snakeInit();
+  wallInit();
   lcd_Fill(0,  0, 240,  70, RED);
 //  lcd_Fill(235, 0, 240, 320, RED);
   while (1)
   {
     // lcd_Clear(WHITE);
-	   generateFruit();
-	   if (flagForButton)
+	    generateFruit();
+	    if (flagForButton)
+	    {
+		    flagForButton= 0;
+		    button_Scan();
+	    }
+	   if (flagForSnakeRun)
 	   {
-		   flagForButton= 0;
-		   button_Scan();
+		    flagForSnakeRun= 0;
+		    snakeRun();
 	   }
-	  if (flagForSnakeRun)
+	  if (flagForGenerateWall)
 	  {
-		   flagForSnakeRun= 0;
-		   snakeRun();
+		  flagForGenerateWall= 0;
+		  generateWall();
 	  }
-//	  HAL_Delay(1000);
-//	  checkHead();
-//	  HAL_Delay(1000);
-
-//      xFruit= (rand()%(rangeXGenerate+ 1)+ 1)*5;   // 47  -> 0->45
-//      yFruit= (rand()%(rangeYGenerate+ 1) + 13)* 5;  // 50	-> 0->49
-//	  lcd_Clear(WHITE);
-//	  move();
-//	  displaySnake();
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -201,6 +197,7 @@ void system_init(){
 	  lcd_init();
 	  setTimerButton(50);
 	  setTimerSnakeRun(300);
+	  setTimerGenerateWall(2000);
 }
 
 uint8_t count_led_debug = 0;

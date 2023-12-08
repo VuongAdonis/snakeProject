@@ -18,7 +18,9 @@ uint16_t flagForSnakeRun= 0;
 uint16_t timerForSnakeRun= 0;
 uint16_t timerForSnakeRun_MUL= 0;
 
-
+uint16_t flagForGenerateWall= 0;
+uint16_t timerForGenerateWall= 0;
+uint16_t timerForGenerateWall_MUL= 0;
 
 /**
   * @brief  Init timer interrupt
@@ -48,6 +50,13 @@ void setTimerButton(uint16_t duration)
 	flagForButton= 0;
 }
 
+void setTimerGenerateWall(uint16_t duration)
+{
+	timerForGenerateWall_MUL= duration/ TIMER_CYCLE_2;
+	timerForGenerateWall= timerForGenerateWall_MUL;
+	flagForGenerateWall= 0;
+}
+
 /**
   * @brief  Timer interrupt routine
   * @param  htim TIM Base handle
@@ -71,6 +80,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 			{
 				flagForButton= 1;
 				timerForButton= timerForButton_MUL;
+			}
+		}
+		if (timerForGenerateWall > 0)
+		{
+			timerForGenerateWall--;
+			if (timerForGenerateWall <= 0)
+			{
+				flagForGenerateWall= 1;
+				timerForGenerateWall= timerForGenerateWall_MUL;
 			}
 		}
 		// 1ms interrupt here

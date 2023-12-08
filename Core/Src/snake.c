@@ -36,7 +36,14 @@ typedef struct
 {
 	int x;
 	int y;
-}infoXY;
+}infoXYSnake;
+
+typedef struct
+{
+	int x;
+	int y;
+	int vertical;
+}infoXYWall;
 
 typedef struct
 {
@@ -47,14 +54,24 @@ typedef struct
 	void (*MOVE)(void);
 	void (*CHECKHEAD)();
 	int snakeDirectionHead;
-	infoXY infoTempSnakeTail;
+	infoXYSnake infoTempSnakeTail;
 	int snakeLength;
-	int stopFlag;
-	infoXY infoSnake[MAX_LENGTH];
-
+	int stopSnakeFlag;
+	infoXYSnake infoSnake[MAX_LENGTH];
 }SNAKE;
 
 SNAKE snakeObject;
+
+typedef struct
+{
+	infoXYWall infoWall[MAX_LENGTH];
+	int amountWallElement;
+	int vertical;
+	int stopGenerateWallFlag;
+}WALL;
+
+WALL wallObject;
+
 
 void drawHeadSnake()
 {
@@ -99,7 +116,7 @@ void drawHeadSnake()
 
 void goLeft()
 {
-	if (snakeObject.stopFlag== 0)
+	if (snakeObject.stopSnakeFlag== 0)
 	{
 		switch (snakeObject.snakeDirectionHead)
 		{
@@ -108,8 +125,8 @@ void goLeft()
 			break;
 		default:
 			snakeObject.snakeDirectionHead= LEFT;
-			infoXY tempSnake1;
-			infoXY tempSnake2;
+			infoXYSnake tempSnake1;
+			infoXYSnake tempSnake2;
 			for (int i= 0; i < snakeObject.snakeLength; i++)
 			{
 				if (i== 0)
@@ -141,7 +158,7 @@ void goLeft()
 
 void goRight()
 {
-	if (snakeObject.stopFlag== 0)
+	if (snakeObject.stopSnakeFlag== 0)
 	{
 		switch (snakeObject.snakeDirectionHead)
 		{
@@ -150,8 +167,8 @@ void goRight()
 			break;
 		default:
 			snakeObject.snakeDirectionHead= RIGHT;
-			infoXY tempSnake1;
-			infoXY tempSnake2;
+			infoXYSnake tempSnake1;
+			infoXYSnake tempSnake2;
 			for (int i= 0; i < snakeObject.snakeLength; i++)
 			{
 				if (i== 0)
@@ -183,7 +200,7 @@ void goRight()
 
 void goUp()
 {
-	if (snakeObject.stopFlag== 0)
+	if (snakeObject.stopSnakeFlag== 0)
 	{
 		switch (snakeObject.snakeDirectionHead)
 		{
@@ -192,8 +209,8 @@ void goUp()
 			break;
 		default:
 			snakeObject.snakeDirectionHead= UP;
-			infoXY tempSnake1;
-			infoXY tempSnake2;
+			infoXYSnake tempSnake1;
+			infoXYSnake tempSnake2;
 			for (int i= 0; i < snakeObject.snakeLength; i++)
 			{
 				if (i== 0)
@@ -225,7 +242,7 @@ void goUp()
 
 void goDown()
 {
-	if (snakeObject.stopFlag== 0)
+	if (snakeObject.stopSnakeFlag== 0)
 	{
 		switch (snakeObject.snakeDirectionHead)
 		{
@@ -234,8 +251,8 @@ void goDown()
 			break;
 		default:
 			snakeObject.snakeDirectionHead= DOWN;
-			infoXY tempSnake1;
-			infoXY tempSnake2;
+			infoXYSnake tempSnake1;
+			infoXYSnake tempSnake2;
 			for (int i= 0; i < snakeObject.snakeLength; i++)
 			{
 				if (i== 0)
@@ -277,44 +294,95 @@ void resumeGame()
 	}
 }
 
-void checkHead()
+int checkOutOfValidRange()
 {
-//	lcd_ShowIntNum (100, 30 , snakeObject.snakeLength , 2 , WHITE , RED , 32) ;
-	if ((snakeObject.infoSnake[0].x < 0) || (snakeObject.infoSnake[0].x > 232)
+	if ((snakeObject.infoSnake[0].x < 0) || (snakeObject.infoSnake[0].x > 230)
 		|| (snakeObject.infoSnake[0].y < 70) || (snakeObject.infoSnake[0].y > 312))
-	{
-		// show gameover
-		// reason: out of valid range
-		lcd_ShowStr (20, 40 , "NGU", WHITE , RED , 24 ,0) ;
+		return 1;
+	return 0;
+}
 
-	}
-	else
+int checkEatBody()
+{
+	for (int i= 1; i < snakeObject.snakeLength; i++)
+		if (snakeObject.infoSnake[0].x== snakeObject.infoSnake[i].x
+			&& snakeObject.infoSnake[0].y== snakeObject.infoSnake[i].y)
+			return 1;
+	return 0;
+}
+
+int checkEatFruit()
+{
+	if (snakeObject.infoSnake[0].x== xFruit && snakeObject.infoSnake[0].y== yFruit)
+		return 1;
+	return 0;
+}
+
+int checkHitWall()
+{
+	for (int i= 0; i < wallObject.amountWallElement; i++)
 	{
-		for (int i= 1; i < snakeObject.snakeLength; i++)
+		if (wallObject.infoWall[i].vertical==1 )
 		{
-			if (snakeObject.infoSnake[0].x== snakeObject.infoSnake[i].x
-				&& snakeObject.infoSnake[0].y== snakeObject.infoSnake[i].y)
+			if ((snakeObject.infoSnake[0].y== wallObject.infoWall[i].y- snakeStep ||
+				snakeObject.infoSnake[0].y == wallObject.infoWall[i].y+ snakeStep ||
+				snakeObject.infoSnake[0].y == wallObject.infoWall[i].y) &&
+				(snakeObject.infoSnake[0].x== wallObject.infoWall[i].x))
 			{
-				// showGameover
-				// reason: eat body
-				lcd_ShowStr (20 , 40 , "NGU", WHITE , RED , 24 ,0) ;
-				return;
+				return 1;
 			}
 		}
-//		  lcd_Fill(0,  0, 240, 70, RED);
-		if (snakeObject.infoSnake[0].x== xFruit && snakeObject.infoSnake[0].y== yFruit)
+		else
 		{
-			xFruit= INT_MIN;
-			yFruit= INT_MIN;
-			snakeObject.snakeLength+= 1;
-			lcd_ShowIntNum (100, 30 , snakeObject.snakeLength , 2 , WHITE , RED , 32) ;
-			snakeObject.infoSnake[snakeObject.snakeLength-1].x= snakeObject.infoTempSnakeTail.x;
-			snakeObject.infoSnake[snakeObject.snakeLength-1 ].y= snakeObject.infoTempSnakeTail.y;
-			int x= snakeObject.infoSnake[snakeObject.snakeLength-1].x;
-			int y= snakeObject.infoSnake[snakeObject.snakeLength-1 ].y;
-			lcd_Fill(x, y, x+ snakeWidth, y + snakeWidth, BLACK);
-			flagEat= 1;
+			if ((snakeObject.infoSnake[0].x== wallObject.infoWall[i].x +snakeStep ||
+				snakeObject.infoSnake[0].x == wallObject.infoWall[i].x- snakeStep ||
+				snakeObject.infoSnake[0].x == wallObject.infoWall[i].x) &&
+				(snakeObject.infoSnake[0].y== wallObject.infoWall[i].y))
+			{
+				return 1;
+			}
 		}
+	}
+	return 0;
+}
+void checkHead()
+{
+	if (checkOutOfValidRange())
+	{
+		// showGameOver;
+		lcd_ShowStr(10, 20, "NGU", WHITE, RED, 40, 0);
+		lcd_ShowStr (20 , 30 , " Test lcd screen ", WHITE , RED , 24 ,
+		0) ;
+		return;
+	}
+	if (checkEatBody())
+	{
+		// ShowGameover
+		lcd_ShowStr(10, 20, "NGU", WHITE, RED, 40, 0);
+		lcd_ShowStr (20 , 30 , " Test lcd screen ", WHITE , RED , 24 ,
+		0) ;
+		return;
+	}
+	if (checkHitWall())
+	{
+		// showGameover
+//		lcd_ShowStr(10, 20, "NGU", WHITE, RED, 40, 0);
+		lcd_ShowStr (20 , 30 , " Test lcd screen ", WHITE , RED , 24 ,
+		0) ;
+		return;
+	}
+	if (checkEatFruit())
+	{
+		xFruit= INT_MIN;
+		yFruit= INT_MIN;
+		snakeObject.snakeLength+= 1;
+		snakeObject.infoSnake[snakeObject.snakeLength-1].x= snakeObject.infoTempSnakeTail.x;
+		snakeObject.infoSnake[snakeObject.snakeLength-1 ].y= snakeObject.infoTempSnakeTail.y;
+		int x= snakeObject.infoSnake[snakeObject.snakeLength-1].x;
+		int y= snakeObject.infoSnake[snakeObject.snakeLength-1 ].y;
+		lcd_Fill(x, y, x+ snakeWidth, y + snakeWidth, BLACK);
+		flagEat= 1;
+		return;
 	}
 }
 
@@ -337,6 +405,19 @@ void move()
 		default:
 			break;
 	}
+}
+
+void wallInit()
+{
+	for (int i= 0; i < MAX_LENGTH; i++)
+	{
+		wallObject.infoWall[i].x= 0;
+		wallObject.infoWall[i].y= 0;
+		wallObject.infoWall[i].vertical= 0;
+	}
+	wallObject.amountWallElement= 0;
+	wallObject.vertical= 1;
+	wallObject.stopGenerateWallFlag= 0;
 }
 
 void snakeRun()
@@ -371,14 +452,18 @@ void snakeRun()
 			  {
 				  if (button_count[9])
 				  {
-					  snakeObject.stopFlag= !snakeObject.stopFlag;
+					  snakeObject.stopSnakeFlag= !snakeObject.stopSnakeFlag;
+					  wallObject.stopGenerateWallFlag= !wallObject.stopGenerateWallFlag;
 				  }
 				  else
 				  {
 					  if (button_count[12])
 					  {
 						  lcd_Clear(WHITE);
+						  xFruit= INT_MIN;
+						  yFruit= INT_MIN;
 						  snakeInit();
+						  wallInit();
 						  lcd_Fill(0,  0, 240, 70, RED);
 						  flagEat= 1;
 					  }
@@ -431,18 +516,191 @@ void generateFruit()
 {
 	if (flagEat== 1)
 	{
-		xFruit= (rand()%(rangeXGenerate+ 1))*snakeStep;
-		yFruit= (rand()%(rangeYGenerate+ 1)+ 7)*snakeStep;
-		for (int i= 0; i < snakeObject.snakeLength; i++)
+		while (1)
 		{
-			if (xFruit== snakeObject.infoSnake[i].x && yFruit == snakeObject.infoSnake[i].y)
+			int remind= 0;
+			xFruit= (rand()%(rangeXGenerate+ 1))*snakeStep;
+			yFruit= (rand()%(rangeYGenerate+ 1)+ 7)*snakeStep;
+			for (int i= 0; i < snakeObject.snakeLength; i++)
 			{
-				xFruit= INT_MIN;
-				yFruit= INT_MIN;
-				return;
+				if (xFruit== snakeObject.infoSnake[i].x && yFruit == snakeObject.infoSnake[i].y)
+				{
+					xFruit= INT_MIN;
+					yFruit= INT_MIN;
+					remind= 1;
+					break;
+				}
 			}
+			if (remind)
+				continue;
+			for (int i =0; i < wallObject.amountWallElement; i++)
+			{
+				if (wallObject.infoWall[i].vertical== 1)
+				{
+					if ((wallObject.infoWall[i].y== yFruit ||
+						wallObject.infoWall[i].y + snakeStep== yFruit ||
+						wallObject.infoWall[i].y + snakeStep== yFruit) && (wallObject.infoWall[i].x= xFruit))
+					{
+						remind= 1;
+						break;
+					}
+				}
+				else
+				{
+					if ((wallObject.infoWall[i].x= xFruit ||
+						wallObject.infoWall[i].x + snakeStep== xFruit ||
+						wallObject.infoWall[i].x - snakeStep== xFruit) && (wallObject.infoWall[i].y== yFruit))
+					{
+						remind= 1;
+						break;
+					}
+				}
+			}
+			if (remind)
+				continue;
+			lcd_Fill(xFruit, yFruit, xFruit+ snakeWidth, yFruit+ snakeWidth, DARKBLUE);
+			flagEat= 0;
+			break;
 		}
-		lcd_Fill(xFruit, yFruit, xFruit+ snakeWidth, yFruit+ snakeWidth, DARKBLUE);
-		flagEat= 0;
+	}
+}
+
+void generateWall()
+{
+	if (wallObject.stopGenerateWallFlag== 0)
+	{
+		while (1)
+		{
+			int remind= 0;
+			int X= (rand()%(rangeXGenerate- 1)+ 1)*snakeStep;
+			int Y= (rand()%(rangeYGenerate- 1)+ 8)*snakeStep;
+			// check conflict with exist wall
+			for (int i= 0; i < wallObject.amountWallElement; i++)
+			{
+				int x= wallObject.infoWall[i].x;
+				int y= wallObject.infoWall[i].y;
+				if (wallObject.vertical== 1)
+				{
+					if (wallObject.infoWall[i].vertical== 1)
+					{
+						if ((y- 2*snakeStep== Y || y+ 2*snakeStep== Y || y- snakeStep== Y||
+								y + snakeStep== Y || y== Y) && (x== X))
+						{
+							remind= 1;
+							break;
+						}
+					}
+					else
+					{
+						if (((y- snakeStep== Y || y+ snakeStep== Y || y== Y) && (x== X)) ||
+							((y- snakeStep== Y || y+ snakeStep== Y || y== Y) && (x- snakeStep== X)) ||
+							((y-snakeStep== Y || y+ snakeStep== Y || y== Y) && (x + snakeStep== X)))
+						{
+							remind= 1;
+//							break;
+						}
+					}
+				}
+				else
+				{
+					if (wallObject.infoWall[i].vertical== 1)
+					{
+						if (((x- snakeStep== X || x+ snakeStep== X || x== X) && (y== Y)) ||
+							((x- snakeStep== X || x+ snakeStep== X || x== X) && (y- snakeStep== Y)) ||
+							((x- snakeStep== X || x+ snakeStep== X || x== X) && (y + snakeStep== Y)))
+						{
+							remind= 1;
+							break;
+						}
+					}
+					else
+					{
+						if ((x- 2*snakeStep== X || x+ 2*snakeStep== X || x+ snakeStep== X ||
+								x- snakeStep== X || x== X) && (y== Y))
+						{
+							remind= 1;
+							break;
+						}
+					}
+				}
+			}
+			if (remind)
+				continue;
+			// check conflict with snake
+			for (int i= 0; i < snakeObject.snakeLength; i++)
+			{
+				int x= snakeObject.infoSnake[i].x;
+				int y= snakeObject.infoSnake[i].y;
+				if (wallObject.vertical== 1)
+				{
+					if ((X== x) && (Y== y || Y- snakeStep== y || Y+ snakeStep== y))
+					{
+						remind= 1;
+						break;
+					}
+				}
+				else
+				{
+					if ((Y== y) && (X== x || X- snakeStep== x || X+ snakeStep== x))
+					{
+						remind= 1;
+						break;
+					}
+				}
+			}
+			if (remind)
+				continue;
+			// check conflict with head snake
+			switch (snakeObject.snakeDirectionHead)
+			{
+				case UP:
+					if ((snakeObject.infoSnake[0].x== X) && (snakeObject.infoSnake[0].y - snakeStep== Y))
+						remind= 1;
+					break;
+				case DOWN:
+					if ((snakeObject.infoSnake[0].x== X) && (snakeObject.infoSnake[0].y + snakeStep== Y))
+						remind= 1;
+					break;
+				case LEFT:
+					if ((snakeObject.infoSnake[0].x - snakeStep== X) && (snakeObject.infoSnake[0].y == Y))
+						remind= 1;
+					break;
+				case RIGHT:
+					if ((snakeObject.infoSnake[0].x + snakeStep== X) && (snakeObject.infoSnake[0].y== Y))
+				default:
+					break;
+			}
+			if (remind)
+				continue;
+			// check conflict with fruit
+			if (wallObject.vertical== 1)
+			{
+				if ((X== xFruit) && (Y== yFruit || Y- snakeStep== yFruit || Y+ snakeStep== yFruit))
+					continue;
+			}
+			else
+			{
+				if ((Y== yFruit) && (X== xFruit || X- snakeStep== xFruit || X+ snakeStep== xFruit))
+					continue;
+			}
+			wallObject.infoWall[wallObject.amountWallElement].x= X;
+			wallObject.infoWall[wallObject.amountWallElement].y= Y;
+			lcd_Fill(X, Y, X+ snakeWidth, Y+ snakeWidth, BROWN);
+			if (wallObject.vertical== 1)
+			{
+				lcd_Fill(X, Y+snakeStep, X+ snakeWidth, Y+ snakeStep+ snakeWidth, BROWN);
+				lcd_Fill(X, Y- snakeStep, X+ snakeWidth, Y- snakeStep+ snakeWidth, BROWN);
+				wallObject.infoWall[wallObject.amountWallElement].vertical= 1;
+			}
+			else
+			{
+				lcd_Fill(X+ snakeStep, Y, X+ snakeStep+ snakeWidth, Y+ snakeWidth, BROWN);
+				lcd_Fill(X-snakeStep, Y, X-snakeStep + snakeWidth, Y+ snakeWidth, BROWN);
+				wallObject.infoWall[wallObject.amountWallElement].vertical= 0;
+			}
+			wallObject.amountWallElement++;
+			wallObject.vertical= !wallObject.vertical;
+			break;
+		}
 	}
 }
