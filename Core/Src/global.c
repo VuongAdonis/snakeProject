@@ -30,6 +30,8 @@ int arrowOverMode = NEWGAME;
 
 int arrowStopMode = RESUME;
 
+int arrowExitMode = YES;
+
 // 0 = Down, 1 = Up;
 int flagUpDOwn = 0;
 int flagChange = 0;
@@ -53,5 +55,8 @@ int oldStatusGame = 0;
 
 int flagOver = 0;
 int flagStop = 0;
-
+int flagExit = 0;
 uint16_t oldTiming = 0;
+
+char* overMessage = "";
+

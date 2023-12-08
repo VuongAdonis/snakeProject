@@ -19,6 +19,8 @@
 void showNotifyStop()
 {
 
+	lcd_StrCenter(0, overWallY[0] + 10, " PAUSE GAME ", WHITE, BLACK, 16, 0);
+
 	lcd_ShowStr(overWallX[0]+8, (overWallY[2]+overWallY[0])/2 - 20, "RESUME", BLACK, GRAY, 16, 1);
 
 	lcd_ShowStr(overWallX[0]+8, (overWallY[2]+overWallY[0])/2 + 15, "EXIT", BLACK, GRAY, 16, 1);

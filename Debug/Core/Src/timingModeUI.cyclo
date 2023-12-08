@@ -1,3 +1,4 @@
 timingModeUI.c:16:6:setupTiming	4
-timingModeUI.c:59:6:showTiming	1
-timingModeUI.c:74:6:initTimingMode	5
+timingModeUI.c:59:6:show7seg	1
+timingModeUI.c:68:6:showTiming	1
+timingModeUI.c:78:6:initTimingMode	5

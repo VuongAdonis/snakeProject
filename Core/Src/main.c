@@ -38,6 +38,8 @@
 #include "set_up_mode.h"
 #include "game_over.h"
 #include "stop_game.h"
+#include "exitUI.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -152,11 +154,15 @@ int main(void)
 	  {
 		  pickStop();
 	  }
+	  if(statusGame == EXITMODE)
+	  {
+		  askToExit();
+	  }
 	  if(flagForTiming == 1)
 	  {
 		  flagForTiming = 0;
 		  statusGame = OVERMODE;
-		  initOverMode();
+		  initOverMode(" TIME OUT ");
 		  arrowMode = NORMALMODE;
 	  }
 	  if(flagForDeTime == 1)

@@ -16,6 +16,7 @@
 #include "software_timer.h"
 #include "timingModeUI.h"
 #include "advanceModeUI.h"
+#include "exitUI.h"
 
 void startUI(){
 	char str1[50] = "";
@@ -34,6 +35,7 @@ void startUI(){
 	lcd_StrCenter(0, 152, str1, WHITE, RED, 24, 1);
 
 	lcd_ShowStr(80, 230, " START ", WHITE, GRAY, 24, 0);
+	show7seg(0, 0, 0, 0);
 }
 
 void eraseArrow()
@@ -248,29 +250,6 @@ void beginStartGame()
 				wallInit();
 				snakeInit();
 				break;
-//			case NORMALMODE:
-//				statusGame = STARTMODE;
-//				ID = 0;
-//				SCORE = 0;
-//				arrowMode = NORMALMODE;
-//				TIMING = NOTIMING;
-//				startUI();
-//				break;
-//			case TIMINGMODE:
-//				statusGame = STARTMODE;
-//				ID = 0;
-//				SCORE = 0;
-//				arrowMode = NORMALMODE;
-//				TIMING = NOTIMING;
-//				startUI();
-//				break;
-//			case ADVANCEMODE:
-//				statusGame = STARTMODE;
-//				ID = 0;
-//				SCORE = 0;
-//				arrowMode = NORMALMODE;
-//				TIMING = NOTIMING;
-//				startUI();
 			case OVERMODE:
 				if(arrowOverMode == NEWGAME)
 				{
@@ -333,6 +312,26 @@ void beginStartGame()
 					startUI();
 				}
 				break;
+			case EXITMODE:
+				if(arrowExitMode == YES)
+				{
+					statusGame = STARTMODE;
+					ID = 0;
+					SCORE = 0;
+					arrowMode = NORMALMODE;
+					TIMING = NOTIMING;
+					startUI();
+				}else{
+					statusGame = oldStatusGame;
+					if(statusGame == TIMINGMODE || statusGame == ADVANCEMODE)
+					{
+						setTimerTiming(TIMING);
+						setTimerDeTime(1000);
+						setTimerGenerateWall(2000);
+						flagForGenerateWall = 0;
+					}
+					resumeGame();
+				}
 			default:
 				break;
 		}
@@ -440,12 +439,8 @@ void beginStartGame()
 		}
 		if(button_count[12] == 1)
 		{
-			statusGame = STARTMODE;
-			ID = 0;
-			SCORE = 0;
-			TIMING = NOTIMING;
-			startUI();
-			arrowMode = NORMALMODE;
+			statusGame = EXITMODE;
+			initExit();
 		}
 	}
 	if(statusGame != TIMINGMODE && statusGame != ADVANCEMODE)
@@ -453,11 +448,4 @@ void beginStartGame()
 		setTimerDeTime(0);
 		setTimerGenerateWall(0);
 	}
-}
-
-void initErase()
-{
-	ID = 0;
-	SCORE = 0;
-	TIMING = NOTIMING;
 }

@@ -56,6 +56,15 @@ void setupTiming()
 	}
 }
 
+void show7seg(int first, int second, int third, int fourth)
+{
+	led7_SetDigit(first, 0, 0);
+	led7_SetDigit(second, 1, 0);
+	led7_SetDigit(third, 2, 0);
+	led7_SetDigit(fourth, 3, 0);
+	led7_SetColon(1);
+}
+
 void showTiming()
 {
 //	char str5[50] = "TIMING: ";
@@ -63,12 +72,7 @@ void showTiming()
 //	strcat(str5, str6);
 //	lcd_Fill(timingX, timingY, timingX+90, timingY+15, BLUE);
 //	lcd_ShowStr(timingX, timingY, str5, RED, BLUE, 16, 0);
-	led_On(6);
-	led7_SetDigit(TIMING/600, 0, 0);
-	led7_SetDigit(TIMING/60, 1, 0);
-	led7_SetDigit(TIMING%60 / 10, 2, 0);
-	led7_SetDigit(TIMING%10, 3, 0);
-	led7_SetColon(1);
+	show7seg(TIMING/600, TIMING/60, TIMING%60 / 10, TIMING%10);
 }
 
 void initTimingMode()

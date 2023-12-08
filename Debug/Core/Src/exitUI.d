@@ -1,4 +1,4 @@
-Core/Src/game_over.o: ../Core/Src/game_over.c ../Core/Inc/game_over.h \
+Core/Src/exitUI.o: ../Core/Src/exitUI.c ../Core/Inc/game_over.h \
  ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -31,7 +31,8 @@ Core/Src/game_over.o: ../Core/Src/game_over.c ../Core/Inc/game_over.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Core/Inc/lcd.h ../Core/Inc/gpio.h ../Core/Inc/startGame.h \
  ../Core/Inc/set_up_mode.h ../Core/Inc/global.h ../Core/Inc/main.h \
- ../Core/Inc/button.h ../Core/Inc/spi.h ../Core/Inc/picture.h
+ ../Core/Inc/button.h ../Core/Inc/spi.h ../Core/Inc/picture.h \
+ ../Core/Inc/exitUI.h
 ../Core/Inc/game_over.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -73,3 +74,4 @@ Core/Src/game_over.o: ../Core/Src/game_over.c ../Core/Inc/game_over.h \
 ../Core/Inc/button.h:
 ../Core/Inc/spi.h:
 ../Core/Inc/picture.h:
+../Core/Inc/exitUI.h:

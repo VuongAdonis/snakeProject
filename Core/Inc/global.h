@@ -18,6 +18,7 @@
 #define OVERMODE 7
 #define SETUPTIMEMODE 8
 #define SETUPADVANCEMODE 9
+#define EXITMODE 10
 
 #define ARROWX1 180
 #define ARROWX2 220
@@ -31,6 +32,8 @@
 #define NEWGAME 0
 #define EXIT 1
 #define RESUME 2
+#define YES 3
+#define NO 4
 
 #define NOTIMING 999
 
@@ -55,7 +58,7 @@ extern int overWallY[4];
 extern int arrowOverMode;
 
 extern int arrowStopMode;
-
+extern int arrowExitMode;
 
 extern int flagUpDOwn;
 extern int flagChange;
@@ -80,7 +83,10 @@ extern int oldStatusGame;
 
 extern int flagOver;
 extern int flagStop;
+extern int flagExit;
 
 extern uint16_t oldTiming;
+
+extern char* overMessage;
 
 #endif /* INC_GLOBAL_H_ */

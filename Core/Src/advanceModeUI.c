@@ -57,7 +57,12 @@ void setupAdvance()
 	lcd_ShowStr(20, 265, " WALL:", WHITE, GRAY, 24, 0);
 	lcd_DrawRectangle(150, 260, 200, 290, WHITE);
 	char *str4 = convert2str(WALL);
-	lcd_ShowStr(170, 265, str4, WHITE, GRAY, 24, 1);
+	if(WALL < 10)
+	{
+		lcd_ShowStr(170, 265, str4, WHITE, GRAY, 24, 1);
+	}else{
+		lcd_ShowStr(165, 265, str4, WHITE, GRAY, 24, 1);
+	}
 
 	if(WALL < 30)
 	{

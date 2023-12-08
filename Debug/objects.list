@@ -1,5 +1,6 @@
 "./Core/Src/advanceModeUI.o"
 "./Core/Src/button.o"
+"./Core/Src/exitUI.o"
 "./Core/Src/fsmc.o"
 "./Core/Src/game_over.o"
 "./Core/Src/global.o"

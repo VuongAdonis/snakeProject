@@ -1,7 +1,0 @@
-../Core/Src/game_over.c:18:6:showWallnotify	24	static
-../Core/Src/game_over.c:33:6:showNotifyOver	24	static
-../Core/Src/game_over.c:42:6:eraseFull	24	static
-../Core/Src/game_over.c:47:6:drawArrowOver	40	static
-../Core/Src/game_over.c:73:6:gameOverUI	8	static
-../Core/Src/game_over.c:80:6:pickOver	8	static
-../Core/Src/game_over.c:117:6:initOverMode	8	static

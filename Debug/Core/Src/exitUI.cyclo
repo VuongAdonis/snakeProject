@@ -1,0 +1,6 @@
+exitUI.c:18:6:eraseEverything	1
+exitUI.c:23:6:showNotifyExit	1
+exitUI.c:33:6:drawArrowExit	3
+exitUI.c:61:6:gameExitUI	1
+exitUI.c:68:6:askToExit	9
+exitUI.c:108:6:initExit	1

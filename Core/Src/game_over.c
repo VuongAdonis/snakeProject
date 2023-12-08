@@ -32,7 +32,7 @@ void showWallnotify()
 
 void showNotifyOver()
 {
-	lcd_StrCenter(0, overWallY[0] + 10, "GAME OVER", BLACK, GRAY, 16, 1);
+	lcd_StrCenter(0, overWallY[0] + 10, overMessage, WHITE, BLACK, 16, 0);
 
 	lcd_ShowStr(overWallX[0]+8, (overWallY[2]+overWallY[0])/2 - 15, "NEW GAME", BLACK, GRAY, 16, 1);
 
@@ -72,7 +72,7 @@ void drawArrowOver()
 
 void gameOverUI()
 {
-	showNotifyOver();
+	showWallnotify();
 	showNotifyOver();
 	drawArrowOver();
 }
@@ -114,11 +114,14 @@ void pickOver()
 	}
 }
 
-void initOverMode()
+void initOverMode(char* str1)
 {
 	statusGame = OVERMODE;
 	SCORE = 0;
 	arrowOverMode = NEWGAME;
 	flagOver = 1;
+	char str[50] = "";
+	strcat(str, str1);
+	overMessage = str;
 	pickOver();
 }

@@ -14,5 +14,6 @@ void generateFruit();
 void resumeGame();
 void generateWall();
 void wallInit();
+void stopSnake();
 
 #endif /* INC_SNAKE_H_ */

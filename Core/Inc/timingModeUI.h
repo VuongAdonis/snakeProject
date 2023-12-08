@@ -9,6 +9,7 @@
 #define INC_TIMINGMODEUI_H_
 
 void setupTiming();
+void show7seg(int first, int second, int third, int fourth);
 void showTiming();
 void initTimingMode();
 
