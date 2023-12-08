@@ -1,7 +1,7 @@
 /*
  * snake.h
  *
- *  Created on: Dec 3, 2023
+ *  Created on: Dec 8, 2023
  *      Author: TVB09
  */
 
@@ -12,5 +12,7 @@ void snakeInit();
 void snakeRun();
 void generateFruit();
 void resumeGame();
+void generateWall();
+void wallInit();
 
 #endif /* INC_SNAKE_H_ */

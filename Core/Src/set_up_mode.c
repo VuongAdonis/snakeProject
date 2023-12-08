@@ -43,17 +43,18 @@ void setUpLcdNormalPlay(uint16_t id, uint16_t score)
 {
 	lcd_Clear(WHITE);
 	lcd_Fill(0, 0, wallX[1], wallY[0], BLUE);
-//	lcd_StrCenter(0, 5, "SNAKE GAME", RED, BLUE, 16, 1);
+	lcd_ShowStr(0, 5, " MODE: NORMAL", RED, BLUE, 16, 1);
+
 	char str1[50] = "ID: ";
 	char *str2 = convert2str(ID);
 
 	strcat(str1, str2);
-	lcd_ShowStr(idX, idY, str1, RED, WHITE, 24, 1);
+	lcd_ShowStr(idX, idY, str1, RED, WHITE, 16, 1);
 
 	char str3[50] = "SCORE: ";
 	char *str4 = convert2str(SCORE);
 	strcat(str3, str4);
-	lcd_ShowStr(scoreX, scoreY+5, str3, RED, BLUE, 24, 0);
+	lcd_ShowStr(scoreX, scoreY+5, str3, RED, BLUE, 16, 0);
 	lcd_ShowPicture(logoBKX, logoBKY, logoBKHeight, logoBKWidth, gImage_BKWHITEBG);
 //	lcd_DrawLine(0, 50, 240, 55, WHITE);
 
@@ -64,7 +65,8 @@ void setUpLcdTimingPlay(uint16_t id, uint16_t timing)
 {
 	lcd_Clear(WHITE);
 	lcd_Fill(0, 0, wallX[1], wallY[0], BLUE);
-//	lcd_StrCenter(0, 5, "SNAKE GAME", RED, BLUE, 16, 1);
+	lcd_ShowStr(0, 5, " MODE: TIMING", RED, BLUE, 16, 1);
+
 	char str1[50] = "ID: ";
 	char *str2 = convert2str(ID);
 	strcat(str1, str2);
@@ -87,7 +89,8 @@ void setUpLcdAdvancePlay(uint16_t id, uint16_t timing)
 {
 	lcd_Clear(WHITE);
 	lcd_Fill(0, 0, wallX[1], wallY[0], BLUE);
-//	lcd_StrCenter(0, 5, "SNAKE GAME", RED, BLUE, 16, 1);
+	lcd_ShowStr(0, 5, " MODE: ADVANCE", RED, BLUE, 16, 1);
+
 	char str1[50] = "ID: ";
 	char *str2 = convert2str(ID);
 	strcat(str1, str2);

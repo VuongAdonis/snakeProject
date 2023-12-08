@@ -14,6 +14,7 @@
 #include "picture.h"
 #include "stop_game.h"
 #include "snake.h"
+#include "software_timer.h"
 
 void showNotifyStop()
 {
@@ -106,6 +107,7 @@ uint8_t initStopGame(uint8_t val)
 		statusGame = STOPMODE;
 		arrowStopMode = RESUME;
 		setTimerTiming(0);
+		setTimerGenerateWall(0);
 		flagStop = 1;
 		pickStop();
 	}

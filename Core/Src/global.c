@@ -35,11 +35,11 @@ int flagUpDOwn = 0;
 int flagChange = 0;
 
 int idX = 5;
-int idY = 5;
-int timingX = 5;
-int timingY = 45;
+int idY = 25;
+//int timingX = 5;
+//int timingY = 45;
 int scoreX = 5;
-int scoreY = 25;
+int scoreY = 45;
 int logoBKX = 150;
 int logoBKY = 10;
 int logoBKHeight = 39;

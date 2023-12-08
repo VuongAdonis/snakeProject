@@ -31,7 +31,7 @@ Core/Src/timingModeUI.o: ../Core/Src/timingModeUI.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Core/Inc/picture.h ../Core/Inc/lcd.h ../Core/Inc/gpio.h \
- ../Core/Inc/button.h ../Core/Inc/spi.h
+ ../Core/Inc/button.h ../Core/Inc/spi.h ../Core/Inc/led_7seg.h
 ../Core/Inc/timingModeUI.h:
 ../Core/Inc/global.h:
 ../Core/Inc/main.h:
@@ -70,3 +70,4 @@ Core/Src/timingModeUI.o: ../Core/Src/timingModeUI.c \
 ../Core/Inc/gpio.h:
 ../Core/Inc/button.h:
 ../Core/Inc/spi.h:
+../Core/Inc/led_7seg.h:

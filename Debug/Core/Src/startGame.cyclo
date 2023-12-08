@@ -3,4 +3,5 @@ startGame.c:39:6:eraseArrow	1
 startGame.c:44:6:drawArrow	1
 startGame.c:53:6:arrowInPickMode	17
 startGame.c:162:6:pickMode	1
-startGame.c:192:6:beginStartGame	46
+startGame.c:192:6:beginStartGame	43
+startGame.c:458:6:initErase	1

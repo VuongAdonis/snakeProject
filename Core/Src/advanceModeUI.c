@@ -59,7 +59,7 @@ void setupAdvance()
 	char *str4 = convert2str(WALL);
 	lcd_ShowStr(170, 265, str4, WHITE, GRAY, 24, 1);
 
-	if(WALL < 5)
+	if(WALL < 30)
 	{
 		lcd_DrawLine(205, 270, 225, 270, WHITE);
 		lcd_DrawLine(205, 270, 215, 260, WHITE);
@@ -95,16 +95,16 @@ void initAdvanceMode()
 	}
 	if(button_count[11] == 1)
 	{
-		WALL = WALL + 1;
-		if(WALL > 5)
+		WALL = WALL + 5;
+		if(WALL > 30)
 		{
-			WALL = 5;
+			WALL = 30;
 		}
 		setupAdvance();
 	}
 	if(button_count[15] == 1)
 	{
-		WALL = WALL - 1;
+		WALL = WALL - 5;
 		if(WALL < 0)
 		{
 			WALL = 0;

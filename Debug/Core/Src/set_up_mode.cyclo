@@ -1,6 +1,6 @@
 set_up_mode.c:18:7:convert2str	1
 set_up_mode.c:26:6:lcdDrawWall	1
 set_up_mode.c:42:6:setUpLcdNormalPlay	1
-set_up_mode.c:63:6:setUpLcdTimingPlay	1
-set_up_mode.c:86:6:setUpLcdAdvancePlay	1
-set_up_mode.c:109:6:printScore	4
+set_up_mode.c:64:6:setUpLcdTimingPlay	1
+set_up_mode.c:88:6:setUpLcdAdvancePlay	1
+set_up_mode.c:112:6:printScore	4

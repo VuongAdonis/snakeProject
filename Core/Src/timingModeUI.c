@@ -11,6 +11,7 @@
 #include "picture.h"
 #include "lcd.h"
 #include "button.h"
+#include "led_7seg.h"
 
 void setupTiming()
 {
@@ -57,11 +58,17 @@ void setupTiming()
 
 void showTiming()
 {
-	char str5[50] = "TIMING: ";
-	char *str6 = convert2str(TIMING);
-	strcat(str5, str6);
-	lcd_Fill(timingX, timingY, timingX+90, timingY+15, BLUE);
-	lcd_ShowStr(timingX, timingY, str5, RED, BLUE, 16, 0);
+//	char str5[50] = "TIMING: ";
+//	char *str6 = convert2str(TIMING);
+//	strcat(str5, str6);
+//	lcd_Fill(timingX, timingY, timingX+90, timingY+15, BLUE);
+//	lcd_ShowStr(timingX, timingY, str5, RED, BLUE, 16, 0);
+	led_On(6);
+	led7_SetDigit(TIMING/600, 0, 0);
+	led7_SetDigit(TIMING/60, 1, 0);
+	led7_SetDigit(TIMING%60 / 10, 2, 0);
+	led7_SetDigit(TIMING%10, 3, 0);
+	led7_SetColon(1);
 }
 
 void initTimingMode()

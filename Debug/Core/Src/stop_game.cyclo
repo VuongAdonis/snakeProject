@@ -1,5 +1,5 @@
-stop_game.c:18:6:showNotifyStop	1
-stop_game.c:27:6:drawArrowStop	3
-stop_game.c:53:6:gameStopUI	1
-stop_game.c:60:6:pickStop	9
-stop_game.c:102:9:initStopGame	2
+stop_game.c:19:6:showNotifyStop	1
+stop_game.c:28:6:drawArrowStop	3
+stop_game.c:54:6:gameStopUI	1
+stop_game.c:61:6:pickStop	9
+stop_game.c:103:9:initStopGame	2

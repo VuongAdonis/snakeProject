@@ -230,7 +230,7 @@ void beginStartGame()
 				}
 				break;
 			case SETUPTIMEMODE:
-				setTimerTiming(TIMING*1000);
+				setTimerTiming(TIMING);
 				setTimerDeTime(1000);
 				oldTiming = TIMING;
 				statusGame = TIMINGMODE;
@@ -238,36 +238,39 @@ void beginStartGame()
 				snakeInit();
 				break;
 			case SETUPADVANCEMODE:
-				setTimerTiming(TIMING*1000);
+				setTimerTiming(TIMING);
 				setTimerDeTime(1000);
+				setTimerGenerateWall(2000);
+				flagForGenerateWall = 0;
 				oldTiming = TIMING;
 				statusGame = ADVANCEMODE;
 				setUpLcdAdvancePlay(ID, TIMING);
+				wallInit();
 				snakeInit();
 				break;
-			case NORMALMODE:
-				statusGame = STARTMODE;
-				ID = 0;
-				SCORE = 0;
-				arrowMode = NORMALMODE;
-				TIMING = NOTIMING;
-				startUI();
-				break;
-			case TIMINGMODE:
-				statusGame = STARTMODE;
-				ID = 0;
-				SCORE = 0;
-				arrowMode = NORMALMODE;
-				TIMING = NOTIMING;
-				startUI();
-				break;
-			case ADVANCEMODE:
-				statusGame = STARTMODE;
-				ID = 0;
-				SCORE = 0;
-				arrowMode = NORMALMODE;
-				TIMING = NOTIMING;
-				startUI();
+//			case NORMALMODE:
+//				statusGame = STARTMODE;
+//				ID = 0;
+//				SCORE = 0;
+//				arrowMode = NORMALMODE;
+//				TIMING = NOTIMING;
+//				startUI();
+//				break;
+//			case TIMINGMODE:
+//				statusGame = STARTMODE;
+//				ID = 0;
+//				SCORE = 0;
+//				arrowMode = NORMALMODE;
+//				TIMING = NOTIMING;
+//				startUI();
+//				break;
+//			case ADVANCEMODE:
+//				statusGame = STARTMODE;
+//				ID = 0;
+//				SCORE = 0;
+//				arrowMode = NORMALMODE;
+//				TIMING = NOTIMING;
+//				startUI();
 			case OVERMODE:
 				if(arrowOverMode == NEWGAME)
 				{
@@ -283,7 +286,7 @@ void beginStartGame()
 					case TIMINGMODE:
 						oldStatusGame = TIMINGMODE;
 						TIMING = oldTiming;
-						setTimerTiming(TIMING*1000);
+						setTimerTiming(TIMING);
 						setTimerDeTime(1000);
 						setUpLcdTimingPlay(ID, TIMING);
 						snakeInit();
@@ -291,10 +294,13 @@ void beginStartGame()
 					case ADVANCEMODE:
 						oldStatusGame = ADVANCEMODE;
 						TIMING = oldTiming;
-						setTimerTiming(TIMING*1000);
+						setTimerTiming(TIMING);
 						setTimerDeTime(1000);
+						setTimerGenerateWall(2000);
+						flagForGenerateWall = 0;
 						setUpLcdAdvancePlay(ID, TIMING);
 						snakeInit();
+						wallInit();
 						break;
 					}
 				}else{
@@ -312,8 +318,10 @@ void beginStartGame()
 					statusGame = oldStatusGame;
 					if(statusGame == TIMINGMODE || statusGame == ADVANCEMODE)
 					{
-						setTimerTiming(TIMING*1000);
+						setTimerTiming(TIMING);
 						setTimerDeTime(1000);
+						setTimerGenerateWall(2000);
+						flagForGenerateWall = 0;
 					}
 					resumeGame();
 				}else{
@@ -443,5 +451,13 @@ void beginStartGame()
 	if(statusGame != TIMINGMODE && statusGame != ADVANCEMODE)
 	{
 		setTimerDeTime(0);
+		setTimerGenerateWall(0);
 	}
+}
+
+void initErase()
+{
+	ID = 0;
+	SCORE = 0;
+	TIMING = NOTIMING;
 }

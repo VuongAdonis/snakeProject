@@ -131,6 +131,11 @@ int main(void)
 	   if(statusGame == NORMALMODE || statusGame == TIMINGMODE || statusGame == ADVANCEMODE)
 	   {
 		   generateFruit();
+		   if(statusGame == ADVANCEMODE && flagForGenerateWall)
+		   {
+			   generateWall();
+			   flagForGenerateWall = 0;
+		   }
 		   if (flagForSnakeRun)
 		   {
 			   flagForSnakeRun= 0;
@@ -224,6 +229,7 @@ void system_init(){
 	  lcd_init();
 	  setTimerButton(50);
 	  setTimerSnakeRun(300);
+	  setTimerGenerateWall(2000);
 }
 
 uint8_t count_led_debug = 0;

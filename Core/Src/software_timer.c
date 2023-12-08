@@ -19,13 +19,16 @@ uint16_t timerForSnakeRun= 0;
 uint16_t timerForSnakeRun_MUL= 0;
 
 uint16_t flagForTiming = 0;
-uint16_t timerForTiming = 0;
-uint16_t timerForTiming_MUL = 0;
+uint32_t timerForTiming = 0;
+uint32_t timerForTiming_MUL = 0;
 
 uint16_t flagForDeTime = 0;
 uint16_t timerForDeTime = 0;
 uint16_t timerForDeTime_MUL = 0;
 
+uint16_t flagForGenerateWall= 0;
+uint16_t timerForGenerateWall= 0;
+uint16_t timerForGenerateWall_MUL= 0;
 /**
   * @brief  Init timer interrupt
   * @param  None
@@ -49,7 +52,7 @@ void setTimerSnakeRun(uint16_t duration){
 
 void setTimerTiming(uint16_t duration)
 {
-	timerForTiming_MUL = duration/ TIMER_CYCLE_2;
+	timerForTiming_MUL =  (uint32_t)duration * 1000/ TIMER_CYCLE_2;
 	timerForTiming = timerForTiming_MUL;
 	flagForTiming = 0;
 }
@@ -59,6 +62,13 @@ void setTimerDeTime(uint16_t duration)
 	timerForDeTime_MUL = duration/ TIMER_CYCLE_2;
 	timerForDeTime = timerForDeTime_MUL;
 	flagForDeTime = 0;
+}
+
+void setTimerGenerateWall(uint16_t duration)
+{
+	timerForGenerateWall_MUL= duration/ TIMER_CYCLE_2;
+	timerForGenerateWall= timerForGenerateWall_MUL;
+	flagForGenerateWall= 0;
 }
 
 void setTimerButton(uint16_t duration)
@@ -109,8 +119,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 				flagForDeTime = 1;
 			}
 		}
+		if (timerForGenerateWall > 0)
+		{
+			timerForGenerateWall--;
+			if (timerForGenerateWall <= 0)
+			{
+				flagForGenerateWall= 1;
+				timerForGenerateWall= timerForGenerateWall_MUL;
+			}
+		}
 		// 1ms interrupt here
-//		led7_Scan();
+		led7_Scan();
 	}
 }
 
