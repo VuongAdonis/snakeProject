@@ -1,7 +1,7 @@
-../Core/Src/software_timer.c:37:6:timer_init	8	static
-../Core/Src/software_timer.c:47:6:setTimerSnakeRun	16	static
-../Core/Src/software_timer.c:53:6:setTimerTiming	16	static
-../Core/Src/software_timer.c:60:6:setTimerDeTime	16	static
-../Core/Src/software_timer.c:67:6:setTimerGenerateWall	16	static
-../Core/Src/software_timer.c:74:6:setTimerButton	16	static
-../Core/Src/software_timer.c:87:6:HAL_TIM_PeriodElapsedCallback	16	static
+software_timer.c:37:6:timer_init	8	static
+software_timer.c:47:6:setTimerSnakeRun	16	static
+software_timer.c:53:6:setTimerTiming	16	static
+software_timer.c:60:6:setTimerDeTime	16	static
+software_timer.c:67:6:setTimerGenerateWall	16	static
+software_timer.c:74:6:setTimerButton	16	static
+software_timer.c:87:6:HAL_TIM_PeriodElapsedCallback	16	static

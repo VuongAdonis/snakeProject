@@ -8,6 +8,7 @@
 
 uint16_t button_count[16];
 uint16_t spi_button = 0x0000;
+uint16_t buttonForSnake[6];
 
 /**
   * @brief  Init matrix button
@@ -16,6 +17,10 @@ uint16_t spi_button = 0x0000;
   */
 void button_init(){
 	HAL_GPIO_WritePin(BTN_LOAD_GPIO_Port, BTN_LOAD_Pin, 1);
+	for (int i= 0; i < 6; i++)
+	{
+		buttonForSnake[i]= 0;
+	}
 }
 
 /**
@@ -31,7 +36,7 @@ void button_Scan(){
 	  int button_index = 0;
 	  uint16_t mask = 0x8000;
 	  for(int i = 0; i < 16; i++){
-		  if(i >= 0 && i <= 3){
+		  if(i >= 0 && i <= 3){   /// 4 --> 7
 			  button_index = i + 4;
 		  } else if (i >= 4 && i <= 7){
 			  button_index = 7 - i;
@@ -41,7 +46,33 @@ void button_Scan(){
 			  button_index = 23 - i;
 		  }
 		  if(spi_button & mask) button_count[button_index] = 0;
-		  else button_count[button_index]++;
+		  else 
+	  	  {
+				button_count[button_index]++;
+				switch (button_index)
+				{
+				case 5:
+					buttonForSnake[0]++;
+					break;
+				case 8:
+					buttonForSnake[1]++;
+					break;
+				case 9:
+					buttonForSnake[2]++;
+					break;
+				case 10:
+					buttonForSnake[3]++;
+					break;
+				case 12:
+					buttonForSnake[4]++;
+					break;
+				case 13:
+					buttonForSnake[5]++;
+					break;
+				default:
+					break;
+				}
+		  }
 		  mask = mask >> 1;
 	  }
 }
