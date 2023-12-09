@@ -20,36 +20,36 @@ void adc_Update(){
 	sensor_Read();
 	Power = sensor_GetCurrent()*sensor_GetVoltage();
 	
-  Light = sensor_GetLight();
+  	Light = sensor_GetLight();
 	if(Light > 1700){
 		Light_intensity = "Weak";
 	}
-  else if(Light < 900){
+  	else if(Light < 900){
 		Light_intensity = "Strong";
 	}
-  else{
+  	else{
 		Light_intensity = "Normal";
 	}
 	
-  Humidity = (((float)sensor_GetPotentiometer())/4095.0)*100.0;
-  if(Humidity > 70){
+  	Humidity = (((float)sensor_GetPotentiometer())/4095.0)*100.0;
+  	if(Humidity > 70){
 		Humidity_intensity = "High";
 	}
-  else if(Humidity < 40){
+  	else if(Humidity < 40){
 		Humidity_intensity = "Low";
 	}
-  else{
+  	else{
 		Humidity_intensity = "Normal";
 	}
 
-  Temperature = sensor_GetTemperature();
-  if(Temperature > 35){
+  	Temperature = sensor_GetTemperature();
+  	if(Temperature > 35){
 		Temperature_intensity = "Hot";
 	}
-  else if(Temperature < 25){
+  	else if(Temperature < 25){
 		Temperature_intensity = "Cold";
 	}
-  else{
+  	else{
 		Temperature_intensity = "Normal";
 	}
 }
