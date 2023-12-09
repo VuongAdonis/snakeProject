@@ -21,6 +21,7 @@
 #include "main.h"
 #include "spi.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 #include "fsmc.h"
 
@@ -39,6 +40,7 @@
 #include "game_over.h"
 #include "stop_game.h"
 #include "exitUI.h"
+#include "uart.h"
 
 /* USER CODE END Includes */
 
@@ -110,12 +112,13 @@ int main(void)
   MX_TIM2_Init();
   MX_SPI1_Init();
   MX_FSMC_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   system_init();
   lcd_Clear(WHITE);
   test_lcd();
   /* USER CODE END 2 */
-//  enterIDFunction();
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 //  snakeInit();
@@ -123,11 +126,14 @@ int main(void)
 //  lcd_Fill(235, 0, 240, 320, RED);
   while (1)
   {
+
     // lcd_Clear(WHITE);
 	   if (flagForButton)
 	   {
 		   flagForButton= 0;
 		   button_Scan();
+		   test_Esp();
+		  lightProcess();
 		   beginStartGame();
 	   }
 	   if(statusGame == NORMALMODE || statusGame == TIMINGMODE || statusGame == ADVANCEMODE)
@@ -148,7 +154,7 @@ int main(void)
 	  }
 	  if(statusGame == OVERMODE)
 	  {
-		  pickOver();
+		  pickOver(OVERMESSAGE);
 	  }
 	  if(statusGame == STOPMODE)
 	  {
@@ -162,7 +168,7 @@ int main(void)
 	  {
 		  flagForTiming = 0;
 		  statusGame = OVERMODE;
-		  initOverMode(" TIME OUT ");
+		  initOverMode(1);
 		  arrowMode = NORMALMODE;
 	  }
 	  if(flagForDeTime == 1)
@@ -193,6 +199,7 @@ void SystemClock_Config(void)
   */
   __HAL_RCC_PWR_CLK_ENABLE();
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -209,6 +216,7 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+
   /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
@@ -233,6 +241,7 @@ void system_init(){
 	  led7_init();
 	  button_init();
 	  lcd_init();
+	  uart_init_esp();
 	  setTimerButton(50);
 	  setTimerSnakeRun(300);
 	  setTimerGenerateWall(2000);
@@ -321,5 +330,3 @@ void assert_failed(uint8_t *file, uint32_t line)
   /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

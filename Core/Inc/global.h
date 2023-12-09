@@ -86,7 +86,6 @@ extern int flagStop;
 extern int flagExit;
 
 extern uint16_t oldTiming;
-
-extern char* overMessage;
+extern uint16_t OVERMESSAGE;
 
 #endif /* INC_GLOBAL_H_ */

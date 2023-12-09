@@ -12,8 +12,8 @@
 
 void showWallnotify();
 void eraseFull();
-void gameOverUI();
-void pickOver();
-void initOverMode(char* str1);
+void gameOverUI(uint16_t overVal);
+void pickOver(uint16_t overVal);
+void initOverMode(uint16_t overVal);
 
 #endif /* INC_GAME_OVER_H_ */

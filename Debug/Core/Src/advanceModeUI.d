@@ -30,6 +30,7 @@ Core/Src/advanceModeUI.o: ../Core/Src/advanceModeUI.c \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/picture.h ../Core/Inc/lcd.h ../Core/Inc/gpio.h \
  ../Core/Inc/button.h ../Core/Inc/spi.h
 ../Core/Inc/advanceModeUI.h:
@@ -65,6 +66,7 @@ Core/Src/advanceModeUI.o: ../Core/Src/advanceModeUI.c \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 ../Core/Inc/picture.h:
 ../Core/Inc/lcd.h:
 ../Core/Inc/gpio.h:

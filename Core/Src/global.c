@@ -57,6 +57,5 @@ int flagOver = 0;
 int flagStop = 0;
 int flagExit = 0;
 uint16_t oldTiming = 0;
-
-char* overMessage = "";
+uint16_t OVERMESSAGE = 0;
 

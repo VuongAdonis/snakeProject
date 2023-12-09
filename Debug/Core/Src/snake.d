@@ -30,6 +30,7 @@ Core/Src/snake.o: ../Core/Src/snake.c ../Core/Inc/snake.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/button.h ../Core/Inc/spi.h ../Core/Inc/global.h
 ../Core/Inc/snake.h:
 ../Core/Inc/lcd.h:
@@ -65,6 +66,7 @@ Core/Src/snake.o: ../Core/Src/snake.c ../Core/Inc/snake.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 ../Core/Inc/button.h:
 ../Core/Inc/spi.h:
 ../Core/Inc/global.h:

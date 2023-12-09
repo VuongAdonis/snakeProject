@@ -367,7 +367,7 @@ void checkHead()
 	if (checkOutOfValidRange())
 	{
 		// showGameOver;
-		initOverMode(" OUT OF RANGE ");
+		initOverMode(3);
 		//		lcd_ShowStr(10, 20, "NGU", WHITE, RED, 40, 0);
 		//		lcd_ShowStr (20 , 30 , " Test lcd screen ", WHITE , RED , 24 ,
 		//		0) ;
@@ -376,7 +376,7 @@ void checkHead()
 	if (checkEatBody())
 	{
 		// ShowGameover
-		initOverMode(" EAT BODY ");
+		initOverMode(2);
 		//		lcd_ShowStr(10, 20, "NGU", WHITE, RED, 40, 0);
 		//		lcd_ShowStr (20 , 30 , " Test lcd screen ", WHITE , RED , 24 ,
 		//		0) ;
@@ -385,7 +385,7 @@ void checkHead()
 	if (checkHitWall())
 	{
 		// showGameover
-		initOverMode(" HIT WALL ");
+		initOverMode(0);
 		//		lcd_ShowStr(10, 20, "NGU", WHITE, RED, 40, 0);
 		//		lcd_ShowStr (20 , 30 , " Test lcd screen ", WHITE , RED , 24 ,
 		//		0) ;

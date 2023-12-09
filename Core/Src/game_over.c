@@ -30,9 +30,27 @@ void showWallnotify()
 
 }
 
-void showNotifyOver()
+void showNotifyOver(uint16_t overVal)
 {
-	lcd_StrCenter(0, overWallY[0] + 10, overMessage, WHITE, BLACK, 16, 0);
+	char str1[50] = "";
+	char* str2;
+	switch(overVal)
+	{
+	case 0:
+		str2 = " HIT WALL ";
+		break;
+	case 1:
+		str2 = " TIME OUT ";
+		break;
+	case 2:
+		str2 = " EAT BODY ";
+		break;
+	case 3:
+		str2 = " OUT OF RANGE ";
+		break;
+	}
+	strcat(str1, str2);
+	lcd_StrCenter(0, overWallY[0] + 10, str1, WHITE, BLACK, 16, 0);
 
 	lcd_ShowStr(overWallX[0]+8, (overWallY[2]+overWallY[0])/2 - 15, "NEW GAME", BLACK, GRAY, 16, 1);
 
@@ -42,6 +60,7 @@ void showNotifyOver()
 void eraseFull()
 {
 	lcd_Fill(overWallX[0] + wallSize, overWallY[0] + 25, overWallX[1] - wallSize, overWallY[3]-5, GRAY);
+
 }
 
 void drawArrowOver()
@@ -70,14 +89,14 @@ void drawArrowOver()
 	}
 }
 
-void gameOverUI()
+void gameOverUI(uint16_t overVal)
 {
 	showWallnotify();
-	showNotifyOver();
+	showNotifyOver(overVal);
 	drawArrowOver();
 }
 
-void pickOver()
+void pickOver(uint16_t overVal)
 {
 	if(button_count[3] == 1)
 	{
@@ -109,19 +128,17 @@ void pickOver()
 	}
 	if(flagOver == 1)
 	{
-		gameOverUI();
+		gameOverUI(overVal);
 		flagOver = 0;
 	}
 }
 
-void initOverMode(char* str1)
+void initOverMode(uint16_t overVal)
 {
 	statusGame = OVERMODE;
 	SCORE = 0;
 	arrowOverMode = NEWGAME;
 	flagOver = 1;
-	char str[50] = "";
-	strcat(str, str1);
-	overMessage = str;
-	pickOver();
+	pickOver(overVal);
+	OVERMESSAGE = overVal;
 }

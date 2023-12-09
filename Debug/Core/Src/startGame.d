@@ -30,6 +30,7 @@ Core/Src/startGame.o: ../Core/Src/startGame.c ../Core/Inc/lcd.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/startGame.h ../Core/Inc/set_up_mode.h ../Core/Inc/global.h \
  ../Core/Inc/main.h ../Core/Inc/button.h ../Core/Inc/spi.h \
  ../Core/Inc/picture.h ../Core/Inc/snake.h ../Core/Inc/software_timer.h \
@@ -69,6 +70,7 @@ Core/Src/startGame.o: ../Core/Src/startGame.c ../Core/Inc/lcd.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_spi.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 ../Core/Inc/startGame.h:
 ../Core/Inc/set_up_mode.h:
 ../Core/Inc/global.h:
