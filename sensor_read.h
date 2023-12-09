@@ -6,6 +6,7 @@
 #include "main.h"
 #include "sensor.h"
 
-
+void adc_Display();
+void adc_Update();
 
 #endif /* INC_SENSORREAD_H_ */
