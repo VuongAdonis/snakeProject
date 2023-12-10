@@ -12,6 +12,7 @@
 #include "time.h"
 #include "stdlib.h"
 #include "global.h"
+#include "uart.h"
 
 #define RIGHT 0
 #define LEFT 1
@@ -284,6 +285,7 @@ void goDown()
 
 void resumeGame()
 {
+	uartSendContinuePlay();
 	lcd_Fill(0, wallY[0] + wallSize, 240, 320, WHITE);
 	for (int i = 0; i < snakeObject.snakeLength; i++)
 	{

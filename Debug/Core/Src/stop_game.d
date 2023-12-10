@@ -35,7 +35,10 @@ Core/Src/stop_game.o: ../Core/Src/stop_game.c ../Core/Inc/lcd.h \
  ../Core/Inc/main.h ../Core/Inc/button.h ../Core/Inc/spi.h \
  ../Core/Inc/picture.h ../Core/Inc/stop_game.h ../Core/Inc/snake.h \
  ../Core/Inc/software_timer.h ../Core/Inc/software_timer.h \
- ../Core/Inc/tim.h ../Core/Inc/led_7seg.h
+ ../Core/Inc/tim.h ../Core/Inc/led_7seg.h ../Core/Inc/uart.h \
+ ../Core/Inc/usart.h ../Core/Inc/utils.h ../Core/Inc/light_control.h \
+ ../Core/Inc/uart.h ../Core/Inc/button.h ../Core/Inc/lcd.h \
+ ../Core/Inc/game_over.h
 ../Core/Inc/lcd.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/main.h:
@@ -83,3 +86,11 @@ Core/Src/stop_game.o: ../Core/Src/stop_game.c ../Core/Inc/lcd.h \
 ../Core/Inc/software_timer.h:
 ../Core/Inc/tim.h:
 ../Core/Inc/led_7seg.h:
+../Core/Inc/uart.h:
+../Core/Inc/usart.h:
+../Core/Inc/utils.h:
+../Core/Inc/light_control.h:
+../Core/Inc/uart.h:
+../Core/Inc/button.h:
+../Core/Inc/lcd.h:
+../Core/Inc/game_over.h:

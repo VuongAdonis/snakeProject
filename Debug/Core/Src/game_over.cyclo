@@ -1,7 +1,7 @@
-game_over.c:18:6:showWallnotify	1
-game_over.c:33:6:showNotifyOver	5
-game_over.c:60:6:eraseFull	1
-game_over.c:66:6:drawArrowOver	3
-game_over.c:92:6:gameOverUI	1
-game_over.c:99:6:pickOver	8
-game_over.c:136:6:initOverMode	1
+game_over.c:19:6:showWallnotify	1
+game_over.c:34:6:showNotifyOver	5
+game_over.c:61:6:eraseFull	1
+game_over.c:67:6:drawArrowOver	3
+game_over.c:93:6:gameOverUI	1
+game_over.c:100:6:pickOver	8
+game_over.c:137:6:initOverMode	1

@@ -1,6 +1,6 @@
-startGame.c:21:6:startUI	1
-startGame.c:41:6:eraseArrow	1
-startGame.c:46:6:drawArrow	1
-startGame.c:55:6:arrowInPickMode	17
-startGame.c:164:6:pickMode	1
-startGame.c:194:6:beginStartGame	47
+startGame.c:22:6:startUI	1
+startGame.c:42:6:eraseArrow	1
+startGame.c:47:6:drawArrow	1
+startGame.c:56:6:arrowInPickMode	17
+startGame.c:165:6:pickMode	1
+startGame.c:195:6:beginStartGame	47

@@ -33,7 +33,12 @@ Core/Src/uart.o: ../Core/Src/uart.c ../Core/Inc/uart.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
  ../Core/Inc/utils.h ../Core/Inc/gpio.h ../Core/Inc/light_control.h \
  ../Core/Inc/uart.h ../Core/Inc/button.h ../Core/Inc/spi.h \
- ../Core/Inc/lcd.h
+ ../Core/Inc/lcd.h ../Core/Inc/lcd.h ../Core/Inc/startGame.h \
+ ../Core/Inc/set_up_mode.h ../Core/Inc/global.h ../Core/Inc/main.h \
+ ../Core/Inc/button.h ../Core/Inc/picture.h ../Core/Inc/stop_game.h \
+ ../Core/Inc/snake.h ../Core/Inc/software_timer.h \
+ ../Core/Inc/software_timer.h ../Core/Inc/tim.h ../Core/Inc/led_7seg.h \
+ ../Core/Inc/game_over.h
 ../Core/Inc/uart.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/main.h:
@@ -75,3 +80,17 @@ Core/Src/uart.o: ../Core/Src/uart.c ../Core/Inc/uart.h \
 ../Core/Inc/button.h:
 ../Core/Inc/spi.h:
 ../Core/Inc/lcd.h:
+../Core/Inc/lcd.h:
+../Core/Inc/startGame.h:
+../Core/Inc/set_up_mode.h:
+../Core/Inc/global.h:
+../Core/Inc/main.h:
+../Core/Inc/button.h:
+../Core/Inc/picture.h:
+../Core/Inc/stop_game.h:
+../Core/Inc/snake.h:
+../Core/Inc/software_timer.h:
+../Core/Inc/software_timer.h:
+../Core/Inc/tim.h:
+../Core/Inc/led_7seg.h:
+../Core/Inc/game_over.h:

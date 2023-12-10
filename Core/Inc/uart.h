@@ -30,11 +30,7 @@ void uart_Rs232SendNumPercent(uint32_t num);
 
 void uart_init_esp();
 void uart_EspSendBytes(uint8_t* bytes, uint16_t size);
-
-void sendGamePlay(uint8_t* bytes, uint16_t size);
-void sendGameFinish(uint8_t* bytes, uint16_t size);
-void sendScoreAverage(uint8_t* bytes, uint16_t size);
-void sendTimeAverage(uint8_t* bytes, uint16_t size);
-void sendSensor(uint8_t* bytes, uint16_t size);
+void uartSendPlay();
+void uartSendContinuePlay();
 
 #endif /* INC_UART_H_ */

@@ -17,6 +17,7 @@
 #include "timingModeUI.h"
 #include "advanceModeUI.h"
 #include "exitUI.h"
+#include "uart.h"
 
 void startUI(){
 	char str1[50] = "";
@@ -205,6 +206,7 @@ void beginStartGame()
 				startUI();
 				break;
 			case STARTMODE:
+				TOTALTIME = 0;
 				statusGame = PICKMODE;
 				pickMode(ID);
 				break;
@@ -215,6 +217,7 @@ void beginStartGame()
 					oldStatusGame = NORMALMODE;
 					statusGame = NORMALMODE;
 					setUpLcdNormalPlay(ID, SCORE);
+					setTimerUart(1000);
 					snakeInit();
 					break;
 				case TIMINGMODE:
@@ -237,6 +240,7 @@ void beginStartGame()
 				oldTiming = TIMING;
 				statusGame = TIMINGMODE;
 				setUpLcdTimingPlay(ID, TIMING);
+				setTimerUart(1000);
 				snakeInit();
 				break;
 			case SETUPADVANCEMODE:
@@ -247,6 +251,7 @@ void beginStartGame()
 				oldTiming = TIMING;
 				statusGame = ADVANCEMODE;
 				setUpLcdAdvancePlay(ID, TIMING);
+				setTimerUart(1000);
 				wallInit();
 				snakeInit();
 				break;
@@ -295,6 +300,7 @@ void beginStartGame()
 				if(arrowStopMode == RESUME)
 				{
 					statusGame = oldStatusGame;
+					setTimerUart(1000);
 					if(statusGame == TIMINGMODE || statusGame == ADVANCEMODE)
 					{
 						setTimerTiming(TIMING);

@@ -14,6 +14,7 @@
 #include "main.h"
 #include "button.h"
 #include "picture.h"
+#include "uart.h"
 
 void showWallnotify()
 {
@@ -135,10 +136,34 @@ void pickOver(uint16_t overVal)
 
 void initOverMode(uint16_t overVal)
 {
+	TOTALSCORE = TOTALSCORE + SCORE;
+	TOTALTIMEPLAY = TOTALTIMEPLAY + TOTALTIME;
+	TOTALPLAY = TOTALPLAY + 1;
+
+	char str1[70] = "GAME_FINISH#";
+	char *str2 = convert2str(ID);
+	strcat(str1, str2);
+	char str3[50] = "has finished game, performance value: ";
+	char *str4 = convert2str(SCORE);
+	strcat(str3, str4);
+	strcat(str1, str3);
+	strcat(str1, "#");
+
+	char *str5 = convert2str(TOTALSCORE/TOTALPLAY);
+	strcat(str1, str5);
+	strcat(str1, "#");
+
+	char *str6 = convert2str(TOTALTIMEPLAY/TOTALPLAY);
+	strcat(str1, str6);
+	strcat(str1, "#");
+	uart_EspSendBytes(str1, strlen(str1));
+
 	statusGame = OVERMODE;
 	SCORE = 0;
+	TOTALTIME = 0;
 	arrowOverMode = NEWGAME;
 	flagOver = 1;
 	pickOver(overVal);
 	OVERMESSAGE = overVal;
+
 }

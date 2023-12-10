@@ -58,4 +58,8 @@ int flagStop = 0;
 int flagExit = 0;
 uint16_t oldTiming = 0;
 uint16_t OVERMESSAGE = 0;
+uint16_t TOTALTIME = 0;
 
+uint32_t TOTALSCORE = 0;
+uint32_t TOTALTIMEPLAY = 0;
+uint32_t TOTALPLAY = 0;

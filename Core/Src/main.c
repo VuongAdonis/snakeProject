@@ -132,8 +132,8 @@ int main(void)
 	   {
 		   flagForButton= 0;
 		   button_Scan();
-		   test_Esp();
-		  lightProcess();
+//		   test_Esp();
+//		  lightProcess();
 		   beginStartGame();
 	   }
 	   if(statusGame == NORMALMODE || statusGame == TIMINGMODE || statusGame == ADVANCEMODE)
@@ -149,7 +149,14 @@ int main(void)
 			   flagForSnakeRun= 0;
 			   snakeRun();
 		   }
+		   if(flagForUart == 1)
+		   {
+//			   uartSendPlay();
+			   TOTALTIME = TOTALTIME + 1;
+			   setTimerUart(1000);
+		   }
 	  }else{
+		  setTimerUart(0);
 		  flagForSnakeRun = 0;
 	  }
 	  if(statusGame == OVERMODE)

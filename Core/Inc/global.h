@@ -87,5 +87,9 @@ extern int flagExit;
 
 extern uint16_t oldTiming;
 extern uint16_t OVERMESSAGE;
+extern uint16_t TOTALTIME;
 
+extern uint32_t TOTALSCORE;
+extern uint32_t TOTALTIMEPLAY;
+extern uint32_t TOTALPLAY;
 #endif /* INC_GLOBAL_H_ */

@@ -15,6 +15,8 @@
 #include "stop_game.h"
 #include "snake.h"
 #include "software_timer.h"
+#include "uart.h"
+#include "game_over.h"
 
 void showNotifyStop()
 {
@@ -106,9 +108,17 @@ uint8_t initStopGame(uint8_t val)
 {
 	if(val == 1)
 	{
+		char str1[60] = "GAME_PLAY#";
+		char *str2 = convert2str(ID);
+		strcat(str1, str2);
+		char str3[15] = "has stop game#";
+		strcat(str1, str3);
+		uart_EspSendBytes(str1, strlen(str1));
+
 		statusGame = STOPMODE;
 		arrowStopMode = RESUME;
 		setTimerTiming(0);
+		setTimerUart(0);
 		setTimerGenerateWall(0);
 		flagStop = 1;
 		pickStop();

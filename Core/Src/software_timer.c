@@ -29,6 +29,11 @@ uint16_t timerForDeTime_MUL = 0;
 uint16_t flagForGenerateWall= 0;
 uint16_t timerForGenerateWall= 0;
 uint16_t timerForGenerateWall_MUL= 0;
+
+uint16_t flagForUart= 0;
+uint16_t timerForUart= 0;
+uint16_t timerForUart_MUL= 0;
+
 /**
   * @brief  Init timer interrupt
   * @param  None
@@ -69,6 +74,13 @@ void setTimerGenerateWall(uint16_t duration)
 	timerForGenerateWall_MUL= duration/ TIMER_CYCLE_2;
 	timerForGenerateWall= timerForGenerateWall_MUL;
 	flagForGenerateWall= 0;
+}
+
+void setTimerUart(uint16_t duration)
+{
+	timerForUart_MUL= duration/ TIMER_CYCLE_2;
+	timerForUart= timerForUart_MUL;
+	flagForUart= 0;
 }
 
 void setTimerButton(uint16_t duration)
@@ -126,6 +138,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 			{
 				flagForGenerateWall= 1;
 				timerForGenerateWall= timerForGenerateWall_MUL;
+			}
+		}
+		if (timerForUart > 0)
+		{
+			timerForUart--;
+			if (timerForUart <= 0)
+			{
+				flagForUart= 1;
+				timerForUart= timerForUart_MUL;
 			}
 		}
 		// 1ms interrupt here

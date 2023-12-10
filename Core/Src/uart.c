@@ -5,7 +5,17 @@
  *      Author: HaHuyen
  */
 #include "uart.h"
-
+#include "lcd.h"
+#include "startGame.h"
+#include "set_up_mode.h"
+#include "global.h"
+#include "main.h"
+#include "button.h"
+#include "picture.h"
+#include "stop_game.h"
+#include "snake.h"
+#include "software_timer.h"
+#include "game_over.h"
 
 uint8_t msg[100];
 
@@ -90,27 +100,77 @@ uint8_t uart_EspCheck(){
 	return 0;
 }
 
-void sendGamePlay(uint8_t* bytes, uint16_t size)
+void uartSendPlay()
 {
-	HAL_UART_Transmit(&huart2, bytes, size, 10);
+	char str1[70] = "GAME_PLAY#";
+	char *str2 = convert2str(ID);
+	strcat(str1, str2);
+
+	char str3[50] = " is playing game, time: ";
+	char *str4 = convert2str(TOTALTIME);
+	strcat(str3, str4);
+
+	char str5[20] = ", score: ";
+	char *str6 = convert2str(SCORE);
+	strcat(str5, str6);
+
+	char str7[20] = ", performance: ";
+	char *str8 = convert2str(SCORE/TOTALTIME);
+	strcat(str7, str8);
+
+	strcat(str1, str3);
+	strcat(str1, str5);
+	strcat(str1, str7);
+	strcat(str1, "#");
+	uart_EspSendBytes(str1, strlen(str1));
 }
 
-void sendGameFinish(uint8_t* bytes, uint16_t size)
+void uartSendContinuePlay()
 {
-	HAL_UART_Transmit(&huart2, bytes, size, 10);
+	char str1[70] = "GAME_PLAY#";
+	char *str2 = convert2str(ID);
+	strcat(str1, str2);
+
+	char str3[60] = "is continue playing game, time: ";
+	char *str4 = convert2str(TOTALTIME);
+	strcat(str3, str4);
+
+	char str5[50] = ", score: ";
+	char *str6 = convert2str(SCORE);
+	strcat(str5, str6);
+
+	char str7[50] = ", performance: ";
+	char *str8 = convert2str(SCORE/TOTALTIME);
+	strcat(str7, str8);
+
+	strcat(str1, str3);
+	strcat(str1, str5);
+	strcat(str1, str7);
+	strcat(str1, "#");
+	uart_EspSendBytes(str1, strlen(str1));
 }
 
-void sendScoreAverage(uint8_t* bytes, uint16_t size)
+void uartSendSensor()
 {
-	HAL_UART_Transmit(&huart2, bytes, size, 10);
-}
+	char str1[50] = "GAME_PLAY#";
+	char *str2 = convert2str(ID);
+	strcat(str1, str2);
 
-void sendTimeAverage(uint8_t* bytes, uint16_t size)
-{
-	HAL_UART_Transmit(&huart2, bytes, size, 10);
-}
+	char str3[60] = "is continue to playing game, time: ";
+	char *str4 = convert2str(TOTALTIME);
+	strcat(str3, str4);
 
-void sendSensor(uint8_t* bytes, uint16_t size)
-{
-	HAL_UART_Transmit(&huart2, bytes, size, 10);
+	char str5[50] = ", score: ";
+	char *str6 = convert2str(SCORE);
+	strcat(str5, str6);
+
+	char str7[50] = ", performance: ";
+	char *str8 = convert2str(SCORE/TOTALTIME);
+	strcat(str7, str8);
+
+	strcat(str1, str3);
+	strcat(str1, str5);
+	strcat(str1, str7);
+	strcat(str1, "#");
+	uart_EspSendBytes(str1, strlen(str1));
 }

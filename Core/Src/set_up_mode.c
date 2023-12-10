@@ -75,7 +75,7 @@ void setUpLcdTimingPlay(uint16_t id, uint16_t timing)
 	char str3[50] = "SCORE: ";
 	char *str4 = convert2str(0);
 	strcat(str3, str4);
-	lcd_ShowStr(scoreX, scoreY, str3, RED, WHITE, 16, 1);
+	lcd_ShowStr(scoreX, scoreY+5, str3, RED, WHITE, 16, 1);
 
 	showTiming();
 
@@ -99,7 +99,7 @@ void setUpLcdAdvancePlay(uint16_t id, uint16_t timing)
 	char str3[50] = "SCORE: ";
 	char *str4 = convert2str(0);
 	strcat(str3, str4);
-	lcd_ShowStr(scoreX, scoreY, str3, RED, WHITE, 16, 1);
+	lcd_ShowStr(scoreX, scoreY+5, str3, RED, WHITE, 16, 1);
 
 	showTiming();
 
@@ -116,14 +116,14 @@ void printScore()
 		char str3[50] = "SCORE: ";
 		char *str4 = convert2str(SCORE);
 		strcat(str3, str4);
-		lcd_ShowStr(scoreX, scoreY+5, str3, RED, BLUE, 24, 0);
+		lcd_ShowStr(scoreX, scoreY+5, str3, RED, BLUE, 16, 0);
 	}
 	if(statusGame == TIMINGMODE || statusGame == ADVANCEMODE)
 	{
 		char str3[50] = "SCORE: ";
 		char *str4 = convert2str(SCORE);
 		strcat(str3, str4);
-		lcd_ShowStr(scoreX, scoreY, str3, RED, BLUE, 16, 0);
+		lcd_ShowStr(scoreX, scoreY+5, str3, RED, BLUE, 16, 0);
 
 		showTiming();
 	}
