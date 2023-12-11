@@ -16,6 +16,7 @@
 #include "snake.h"
 #include "software_timer.h"
 #include "game_over.h"
+#include "sensor.h"
 
 uint8_t msg[100];
 
@@ -152,20 +153,17 @@ void uartSendContinuePlay()
 
 void uartSendSensor()
 {
-	char str1[50] = "GAME_PLAY#";
-	char *str2 = convert2str(ID);
-	strcat(str1, str2);
-
-	char str3[60] = "is continue to playing game, time: ";
-	char *str4 = convert2str(TOTALTIME);
+	char str1[50] = "SENSOR_INFO#";
+	char str3[60] = "Temperature: ";
+	char *str4 = convert2str((uint16_t)sensor_GetTemperature());
 	strcat(str3, str4);
 
-	char str5[50] = ", score: ";
-	char *str6 = convert2str(SCORE);
+	char str5[50] = ", light: ";
+	char *str6 = convert2str(sensor_GetLight());
 	strcat(str5, str6);
 
-	char str7[50] = ", performance: ";
-	char *str8 = convert2str(SCORE/TOTALTIME);
+	char str7[50] = ", potentiometer: ";
+	char *str8 = convert2str(sensor_GetPotentiometer());
 	strcat(str7, str8);
 
 	strcat(str1, str3);

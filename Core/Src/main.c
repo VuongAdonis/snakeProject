@@ -19,6 +19,8 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "adc.h"
+#include "dma.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
@@ -41,6 +43,7 @@
 #include "stop_game.h"
 #include "exitUI.h"
 #include "uart.h"
+#include "sensor.h"
 
 /* USER CODE END Includes */
 
@@ -109,10 +112,13 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_TIM2_Init();
   MX_SPI1_Init();
   MX_FSMC_Init();
   MX_USART2_UART_Init();
+  MX_ADC1_Init();
+  MX_TIM13_Init();
   /* USER CODE BEGIN 2 */
   system_init();
   lcd_Clear(WHITE);
@@ -184,7 +190,12 @@ int main(void)
 		  showTiming();
 		  setTimerDeTime(1000);
 	  }
-
+	  if(flagForSendSensor == 1)
+	  {
+		  sensor_Read();
+		  uartSendSensor();
+		  setTimerSendSensor(10000);
+	  }
 
     /* USER CODE END WHILE */
 
@@ -249,9 +260,11 @@ void system_init(){
 	  button_init();
 	  lcd_init();
 	  uart_init_esp();
-	  setTimerButton(50);
+	  sensor_init();
+	  setTimerButton(10);
 	  setTimerSnakeRun(300);
 	  setTimerGenerateWall(2000);
+	  setTimerSendSensor(10000);
 }
 
 uint8_t count_led_debug = 0;

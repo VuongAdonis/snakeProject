@@ -34,6 +34,10 @@ uint16_t flagForUart= 0;
 uint16_t timerForUart= 0;
 uint16_t timerForUart_MUL= 0;
 
+uint16_t flagForSendSensor= 0;
+uint16_t timerForSendSensor= 0;
+uint16_t timerForSendSensor_MUL= 0;
+
 /**
   * @brief  Init timer interrupt
   * @param  None
@@ -88,6 +92,13 @@ void setTimerButton(uint16_t duration)
 	timerForButton_MUL= duration/TIMER_CYCLE_2;
 	timerForButton= timerForButton_MUL;
 	flagForButton= 0;
+}
+
+void setTimerSendSensor(uint16_t duration)
+{
+	timerForSendSensor_MUL= duration/TIMER_CYCLE_2;
+	timerForSendSensor= timerForSendSensor_MUL;
+	flagForSendSensor= 0;
 }
 
 /**
@@ -147,6 +158,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 			{
 				flagForUart= 1;
 				timerForUart= timerForUart_MUL;
+			}
+		}
+		if (timerForSendSensor > 0)
+		{
+			timerForSendSensor--;
+			if (timerForSendSensor <= 0)
+			{
+				flagForSendSensor= 1;
+				timerForSendSensor= timerForSendSensor_MUL;
 			}
 		}
 		// 1ms interrupt here
