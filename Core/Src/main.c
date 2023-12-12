@@ -261,9 +261,9 @@ void system_init(){
 	  lcd_init();
 	  uart_init_esp();
 	  sensor_init();
-	  setTimerButton(10);
-	  setTimerSnakeRun(300);
-	  setTimerGenerateWall(2000);
+	  setTimerButton(50);
+	  setTimerSnakeRun(250);
+	  setTimerGenerateWall(4000);
 	  setTimerSendSensor(10000);
 }
 

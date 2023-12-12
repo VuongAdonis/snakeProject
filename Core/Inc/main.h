@@ -84,6 +84,22 @@ void Error_Handler(void);
 #define FSMC_BLK_GPIO_Port GPIOA
 #define BTN_LOAD_Pin GPIO_PIN_3
 #define BTN_LOAD_GPIO_Port GPIOD
+#define C1_Pin GPIO_PIN_13
+#define C1_GPIO_Port GPIOG
+#define R3_Pin GPIO_PIN_14
+#define R3_GPIO_Port GPIOG
+#define C2_Pin GPIO_PIN_6
+#define C2_GPIO_Port GPIOC
+#define C3_Pin GPIO_PIN_7
+#define C3_GPIO_Port GPIOC
+#define R2_Pin GPIO_PIN_3
+#define R2_GPIO_Port GPIOC
+#define R1_Pin GPIO_PIN_4
+#define R1_GPIO_Port GPIOA
+#define R0_Pin GPIO_PIN_5
+#define R0_GPIO_Port GPIOA
+#define C0_Pin GPIO_PIN_12
+#define C0_GPIO_Port GPIOG
 
 /* USER CODE BEGIN Private defines */
 

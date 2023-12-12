@@ -447,51 +447,57 @@ void wallInit()
 
 void snakeRun()
 {
-	if (button_count[5])
+	if (buttonForSnake[0])
 	{
+		buttonForSnake[0]= 0;
 		(*snakeObject.GOUP)();
 		(*snakeObject.CHECKHEAD)();
 	}
 	else
 	{
-		if (button_count[13])
+		if (buttonForSnake[1])
 		{
-			(*snakeObject.GODOWN)();
+			buttonForSnake[1]= 0;
+			(*snakeObject.GOLEFT)();
 			(*snakeObject.CHECKHEAD)();
 		}
 		else
 		{
-			if (button_count[10])
+			if (buttonForSnake[2])
 			{
-				(*snakeObject.GORIGHT)();
-				(*snakeObject.CHECKHEAD)();
+				buttonForSnake[2]= 0;
+				snakeObject.stopSnakeFlag = !snakeObject.stopSnakeFlag;
+				wallObject.stopGenerateWallFlag = !wallObject.stopGenerateWallFlag;
+				snakeObject.stopSnakeFlag = initStopGame(snakeObject.stopSnakeFlag);
 			}
 			else
 			{
-				if (button_count[8])
+				if (buttonForSnake[3])
 				{
-					(*snakeObject.GOLEFT)();
+					buttonForSnake[3]= 0;
+					(*snakeObject.GORIGHT)();
 					(*snakeObject.CHECKHEAD)();
 				}
 				else
 				{
-					if (button_count[9])
+					if (buttonForSnake[4])
 					{
-						snakeObject.stopSnakeFlag = !snakeObject.stopSnakeFlag;
-						wallObject.stopGenerateWallFlag = !wallObject.stopGenerateWallFlag;
-						snakeObject.stopSnakeFlag = initStopGame(snakeObject.stopSnakeFlag);
+						buttonForSnake[4]= 0;
+						lcd_Clear(WHITE);
+						xFruit = INT_MIN;
+						yFruit = INT_MIN;
+						snakeInit();
+						wallInit();
+						lcd_Fill(0, 0, 240, 70, RED);
+						flagEat = 1;
 					}
 					else
 					{
-						if (button_count[12])
+						if (buttonForSnake[5])
 						{
-							lcd_Clear(WHITE);
-							xFruit = INT_MIN;
-							yFruit = INT_MIN;
-							snakeInit();
-							wallInit();
-							lcd_Fill(0, 0, 240, 70, RED);
-							flagEat = 1;
+							buttonForSnake[5]= 0;
+							(*snakeObject.GODOWN)();
+							(*snakeObject.CHECKHEAD)();
 						}
 						else
 						{

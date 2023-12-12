@@ -1,2 +1,2 @@
-../Core/Src/sensor_read.c:4:6:adc_Display	4	static
-../Core/Src/sensor_read.c:21:6:adc_Update	4	static
+sensor_read.c:4:6:adc_Display	4	static
+sensor_read.c:21:6:adc_Update	4	static

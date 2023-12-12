@@ -196,6 +196,7 @@ void beginStartGame()
 {
 	if(button_count[14] == 1)
 	{
+		// button_init();
 		switch (statusGame) {
 			case INIT:
 				statusGame = STARTMODE;
@@ -352,7 +353,7 @@ void beginStartGame()
 		{
 			if(button_count[i] == 1)
 			{
-				button_count[i] == 0;
+//				button_count[i] = 0;
 				switch (i)
 				{
 					case 0:
