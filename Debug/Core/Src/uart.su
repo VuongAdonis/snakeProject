@@ -1,7 +1,7 @@
-uart.c:72:6:uart_init_esp	8	static
-uart.c:77:6:uart_EspSendBytes	16	static
-uart.c:81:6:HAL_UART_RxCpltCallback	16	static
-uart.c:99:9:uart_EspCheck	4	static
-uart.c:104:6:uartSendPlay	200	static
-uart.c:129:6:uartSendContinuePlay	272	static
-uart.c:154:6:uartSendSensor	248	static
+../Core/Src/uart.c:72:6:uart_init_esp	8	static
+../Core/Src/uart.c:77:6:uart_EspSendBytes	16	static
+../Core/Src/uart.c:81:6:HAL_UART_RxCpltCallback	16	static
+../Core/Src/uart.c:99:9:uart_EspCheck	4	static
+../Core/Src/uart.c:104:6:uartSendPlay	200	static
+../Core/Src/uart.c:129:6:uartSendContinuePlay	272	static
+../Core/Src/uart.c:154:6:uartSendSensor	248	static

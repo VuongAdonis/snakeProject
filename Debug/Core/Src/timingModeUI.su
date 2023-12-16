@@ -1,4 +1,4 @@
-timingModeUI.c:16:6:setupTiming	96	static
-timingModeUI.c:59:6:show7seg	24	static
-timingModeUI.c:68:6:showTiming	16	static
-timingModeUI.c:78:6:initTimingMode	8	static
+../Core/Src/timingModeUI.c:16:6:setupTiming	96	static
+../Core/Src/timingModeUI.c:59:6:show7seg	24	static
+../Core/Src/timingModeUI.c:68:6:showTiming	16	static
+../Core/Src/timingModeUI.c:78:6:initTimingMode	8	static

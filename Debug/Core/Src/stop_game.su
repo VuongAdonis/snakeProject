@@ -1,5 +1,5 @@
-stop_game.c:21:6:showNotifyStop	24	static
-stop_game.c:32:6:drawArrowStop	40	static
-stop_game.c:58:6:gameStopUI	8	static
-stop_game.c:65:6:pickStop	8	static
-stop_game.c:107:9:initStopGame	104	static
+../Core/Src/stop_game.c:21:6:showNotifyStop	24	static
+../Core/Src/stop_game.c:32:6:drawArrowStop	40	static
+../Core/Src/stop_game.c:58:6:gameStopUI	8	static
+../Core/Src/stop_game.c:65:6:pickStop	8	static
+../Core/Src/stop_game.c:107:9:initStopGame	104	static

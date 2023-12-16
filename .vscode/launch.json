@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Acer/Desktop/DHBK/HK5/DATKLL/final/BKIT_ARM4_Bai3_Lcd_button/snakeProject/Core/Src",
-      "program": "c:/Users/Acer/Desktop/DHBK/HK5/DATKLL/final/BKIT_ARM4_Bai3_Lcd_button/snakeProject/Core/Src/build/Debug/outDebug",
+      "cwd": "c:/Users/Acer/Desktop/DHBK/HK5/OS/BTL/ossim_source_code_part2_hk231_paging/ossim_source_code_part2_hk231_paging/src",
+      "program": "c:/Users/Acer/Desktop/DHBK/HK5/OS/BTL/ossim_source_code_part2_hk231_paging/ossim_source_code_part2_hk231_paging/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

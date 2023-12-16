@@ -44,6 +44,7 @@
 #include "exitUI.h"
 #include "uart.h"
 #include "sensor.h"
+#include "initUI.h"
 
 /* USER CODE END Includes */
 
@@ -77,6 +78,7 @@ void test_LedY1();
 void test_7seg();
 void test_button();
 void test_lcd();
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -121,8 +123,9 @@ int main(void)
   MX_TIM13_Init();
   /* USER CODE BEGIN 2 */
   system_init();
-  lcd_Clear(WHITE);
-  test_lcd();
+  lcd_Clear(BLACK);
+//  test_lcd();
+  runInit();
   /* USER CODE END 2 */
 
   /* Infinite loop */

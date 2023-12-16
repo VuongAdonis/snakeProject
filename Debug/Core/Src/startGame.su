@@ -1,6 +1,6 @@
-startGame.c:22:6:startUI	88	static
-startGame.c:42:6:eraseArrow	16	static
-startGame.c:47:6:drawArrow	24	static
-startGame.c:56:6:arrowInPickMode	24	static
-startGame.c:165:6:pickMode	96	static
-startGame.c:195:6:beginStartGame	88	static
+../Core/Src/startGame.c:22:6:startUI	88	static
+../Core/Src/startGame.c:42:6:eraseArrow	16	static
+../Core/Src/startGame.c:47:6:drawArrow	24	static
+../Core/Src/startGame.c:56:6:arrowInPickMode	24	static
+../Core/Src/startGame.c:165:6:pickMode	96	static
+../Core/Src/startGame.c:195:6:beginStartGame	88	static

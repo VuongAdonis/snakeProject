@@ -1,6 +1,6 @@
-exitUI.c:18:6:eraseEverything	4	static
-exitUI.c:23:6:showNotifyExit	24	static
-exitUI.c:33:6:drawArrowExit	40	static
-exitUI.c:61:6:gameExitUI	8	static
-exitUI.c:68:6:askToExit	8	static
-exitUI.c:108:6:initExit	8	static
+../Core/Src/exitUI.c:18:6:eraseEverything	4	static
+../Core/Src/exitUI.c:23:6:showNotifyExit	24	static
+../Core/Src/exitUI.c:33:6:drawArrowExit	40	static
+../Core/Src/exitUI.c:61:6:gameExitUI	8	static
+../Core/Src/exitUI.c:68:6:askToExit	8	static
+../Core/Src/exitUI.c:108:6:initExit	8	static

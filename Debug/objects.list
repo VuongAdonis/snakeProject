@@ -7,6 +7,7 @@
 "./Core/Src/game_over.o"
 "./Core/Src/global.o"
 "./Core/Src/gpio.o"
+"./Core/Src/initUI.o"
 "./Core/Src/lcd.o"
 "./Core/Src/led_7seg.o"
 "./Core/Src/light_control.o"

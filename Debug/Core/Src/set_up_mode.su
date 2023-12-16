@@ -1,6 +1,6 @@
-set_up_mode.c:18:7:convert2str	72	static
-set_up_mode.c:26:6:lcdDrawWall	24	static
-set_up_mode.c:42:6:setUpLcdNormalPlay	152	static
-set_up_mode.c:64:6:setUpLcdTimingPlay	152	static
-set_up_mode.c:88:6:setUpLcdAdvancePlay	152	static
-set_up_mode.c:112:6:printScore	88	static
+../Core/Src/set_up_mode.c:18:7:convert2str	72	static
+../Core/Src/set_up_mode.c:26:6:lcdDrawWall	24	static
+../Core/Src/set_up_mode.c:42:6:setUpLcdNormalPlay	152	static
+../Core/Src/set_up_mode.c:64:6:setUpLcdTimingPlay	152	static
+../Core/Src/set_up_mode.c:88:6:setUpLcdAdvancePlay	152	static
+../Core/Src/set_up_mode.c:112:6:printScore	88	static
